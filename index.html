@@ -1647,6 +1647,56 @@
             color: #ccc;
         }
 
+        /* References Section in Footer */
+        .references-footer {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .references-footer h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--white);
+        }
+
+        .references-footer ul {
+            list-style-type: none;
+        }
+
+        .references-footer li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .references-footer li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .references-footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+
+        .references-footer a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .reference-description {
+            color: #999;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -2529,6 +2579,26 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- References Section in Footer -->
+            <div class="references-footer">
+                <h4>References</h4>
+                <ul>
+                    <li>
+                        <a href="https://share.google/umU3x2ISqWfks5hzF" target="_blank">https://share.google/umU3x2ISqWfks5hzF</a>
+                        <div class="reference-description">Additional resource on biodiversity and health connections</div>
+                    </li>
+                    <li>
+                        <a href="https://share.google/RIRTypaQrN8idwqIJ" target="_blank">https://share.google/RIRTypaQrN8idwqIJ</a>
+                        <div class="reference-description">Research materials on biodiversity threats and solutions</div>
+                    </li>
+                    <li>
+                        <a href="https://www.consilium.europa.eu/en/policies/biodiversity/timeline-biodiversity/" target="_blank">https://www.consilium.europa.eu/en/policies/biodiversity/timeline-biodiversity/</a>
+                        <div class="reference-description">European Council - Timeline of biodiversity policy</div>
+                    </li>
+                </ul>
+            </div>
+            
             <div class="copyright">
                 <p>&copy; 2025 Biodiversity Threats & Healthy Society | Science, Technology & Society</p>
             </div>

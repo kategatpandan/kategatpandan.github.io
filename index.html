@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodiversity Threats & Healthy Society | Science, Technology & Society</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #4caf50;
+            --secondary: #ff9800;
+            --accent: #2196f3;
+            --health: #e91e63;
+            --text: #333;
+            --text-light: #666;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: rgba(46, 125, 50, 0.95);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .scrolled {
+            background-color: rgba(46, 125, 50, 0.98);
+            padding: 0.7rem 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--secondary);
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--white);
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .search-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .search-bar {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            color: var(--white);
+            font-size: 0.9rem;
+            width: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .search-bar.active {
+            width: 250px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Search Results Styles */
+        .search-results {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 100px;
+            backdrop-filter: blur(5px);
+        }
+
+        .search-results-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .search-results-content h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-item {
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--light-bg);
+        }
+
+        .result-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-light);
+        }
+
+        .result-item h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .result-item p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .result-section {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .close-results {
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: block;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .close-results:hover {
+            background: #e68900;
+            transform: translateY(-2px);
+        }
+
+        /* No results message */
+        .search-results-content h3 + p {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Mobile Responsive for Search */
+        @media (max-width: 992px) {
+            .search-bar.active {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                display: grid;
+                grid-template-areas: 
+                    "logo mobile actions"
+                    "nav nav nav";
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .logo {
+                grid-area: logo;
+            }
+            
+            .mobile-menu {
+                grid-area: mobile;
+                justify-self: start;
+                display: block;
+            }
+            
+            .header-actions {
+                grid-area: actions;
+                justify-self: end;
+            }
+            
+            .nav-menu {
+                grid-area: nav;
+                display: none;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .search-bar.active {
+                position: fixed;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                z-index: 101;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .search-bar.active {
+                width: 95%;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+            }
+            
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .logo i {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Hero Section - Home Page Cover */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('biodiversity-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 12rem 0 8rem;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: #e68900;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Key Facts Section - IMPROVED */
+        .key-facts {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .fact-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .fact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .fact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .fact-card i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            background: rgba(76, 175, 80, 0.1);
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .fact-card:hover i {
+            background: rgba(76, 175, 80, 0.2);
+            transform: scale(1.1);
+        }
+
+        .fact-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+        }
+
+        .fact-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Overview Section - IMPROVED */
+        .overview {
+            padding: 6rem 0;
+            background-color: var(--light-bg);
+        }
+
+        .overview-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .overview-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .overview-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .overview-image:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .overview-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .overview-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Visual Aid: Biodiversity Pyramid - IMPROVED */
+        .biodiversity-pyramid {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .pyramid-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .pyramid-levels {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .pyramid-level {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            padding: 1.8rem;
+            border-radius: 10px;
+            background-color: var(--light-bg);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .pyramid-level:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .level-icon {
+            font-size: 2.2rem;
+            margin-right: 1.8rem;
+            color: var(--primary);
+            background: rgba(76, 175, 80, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .level-content {
+            flex: 1;
+        }
+
+        .level-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .level-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Threats to Biodiversity Section - IMPROVED */
+        .threats {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .threats-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .threats-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .threats-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .threats-image:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .threats-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .threats-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .threats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .threat-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid #e74c3c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .threat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .threat-icon {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+            background: rgba(231, 76, 60, 0.1);
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .threat-card:hover .threat-icon {
+            background: rgba(231, 76, 60, 0.2);
+            transform: scale(1.1);
+        }
+
+        .threat-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+        }
+
+        .threat-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Visual Aid: Threat Timeline - IMPROVED */
+        .threat-timeline {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .timeline-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            border: 4px solid var(--primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .timeline-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-link:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .timeline-source {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .timeline-source a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .timeline-source a:hover {
+            text-decoration: underline;
+        }
+
+        /* Multiple links container */
+        .multiple-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline Overview Styles */
+        .timeline-overview {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .overview-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .overview-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .overview-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .overview-year {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .overview-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .expand-timeline-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .expand-timeline-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Full Timeline Styles */
+        .full-timeline {
+            display: none;
+            margin-top: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .full-timeline.active {
+            display: block;
+        }
+
+        .collapse-timeline-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            background-color: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-top: 2rem;
+        }
+
+        .collapse-timeline-btn:hover {
+            background-color: #e68900;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Animation for expanding timeline */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .overview-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .overview-item {
+                padding: 1rem;
+            }
+        }
+
+        .case-study {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .case-study-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .case-study-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .case-study-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .solutions-preview {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .solutions-preview h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .solutions-preview ul {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .solutions-preview li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .cta-mini {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-mini p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--secondary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: normal;
+        }
+
+        /* Impact Section - IMPROVED */
+        .impact {
+            padding: 6rem 0;
+            background-color: var(--light-bg);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .impact-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .impact-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .impact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .impact-card:hover .impact-image img {
+            transform: scale(1.1);
+        }
+
+        .impact-text {
+            padding: 2rem;
+        }
+
+        .impact-text h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+        }
+
+        .impact-text p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Health Issues Section - IMPROVED */
+        .health-issues {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .health-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--health);
+            height: 100%;
+        }
+
+        .health-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .health-card h3 {
+            margin-bottom: 1rem;
+            color: var(--health);
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+        }
+
+        .health-card h3 i {
+            margin-right: 10px;
+            background: rgba(233, 30, 99, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .health-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Technology Section - IMPROVED */
+        .technology {
+            padding: 6rem 0;
+            background-color: var(--light-bg);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .tech-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tech-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tech-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .tech-card:hover .tech-image img {
+            transform: scale(1.1);
+        }
+
+        .tech-text {
+            padding: 2rem;
+        }
+
+        .tech-text h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+
+        .tech-text p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* STS Connection Section - IMPROVED */
+        .sts-connection {
+            padding: 6rem 0;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                        url('sts-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .sts-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sts-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .sts-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .sts-image:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .sts-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .sts-image:hover img {
+            transform: scale(1.05);
+        }
+
+/* Visual Aid: STS Interconnection Diagram - IMPROVED */
+.sts-diagram {
+    margin: 4rem 0;
+    padding: 2.5rem;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary);
+}
+
+.diagram-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    font-size: 1.8rem;
+}
+
+.diagram-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.diagram-element {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: 12px;
+    background-color: var(--light-bg);
+    transition: all 0.3s ease;
+    flex: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.diagram-element:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.element-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.diagram-element:nth-child(1) .element-icon {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: var(--accent);
+}
+
+.diagram-element:nth-child(2) .element-icon {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--primary);
+}
+
+.diagram-element:nth-child(3) .element-icon {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: var(--secondary);
+}
+
+.diagram-element h4 {
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    font-size: 1.3rem;
+}
+
+.diagram-element p {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.diagram-connections {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15%;
+    z-index: 0;
+}
+
+.connection-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent), var(--primary), var(--secondary));
+    margin: 0 10px;
+    position: relative;
+}
+
+.connection-line::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--secondary);
+    border-radius: 50%;
+}
+
+/* Responsive adjustments for the diagram */
+@media (max-width: 768px) {
+    .diagram-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .diagram-connections {
+        display: none;
+    }
+    
+    .diagram-element {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* CTA Section */
+.cta {
+    background: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    z-index: 1;
+}
+
+.cta .container {
+    position: relative;
+    z-index: 2;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.cta p {
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.2rem;
+    opacity: 0.95;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.cta .btn {
+    background-color: var(--secondary);
+    color: var(--white);
+    border: 2px solid var(--secondary);
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.cta .btn:hover {
+    background-color: transparent;
+    border-color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+        /* Editorial Staff Section - IMPROVED */
+        .editorial-staff {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .staff-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .staff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .staff-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .staff-info p {
+            color: var(--text-light);
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 4rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .overview-content,
+            .sts-content,
+            .threats-content,
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 21px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .hero {
+                padding: 10rem 0 6rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .case-study-image {
+                order: -1;
+            }
+
+            .diagram-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 4rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .case-study,
+            .solutions-preview {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Biodiversity & Society</span>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#key-facts">Key Facts</a></li>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#threats">Threats</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                        <li><a href="#health">Health Issues</a></li>
+                        <li><a href="#technology">Technology</a></li>
+                        <li><a href="#sts">STS Connection</a></li>
+                        <li><a href="#editorial-staff">Our Team</a></li>
+                    </ul>
+                </nav>
+                <!-- UPDATED SEARCH BAR -->
+                <div class="header-actions">
+                    <div class="search-container">
+                        <button class="search-toggle">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-bar">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - Home Page Cover -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Threats to Biodiversity & The Healthy Society</h1>
+                <div class="tagline">Exploring the Intersection of Science, Technology, and Society</div>
+                <p>Biodiversity loss represents one of the most critical challenges of our time, with profound implications for human health, economic stability, and social well-being. This website explores how science and technology can help address these threats while considering societal dimensions.</p>
+                <div class="btn-container">
+                    <a href="#key-facts" class="btn">Explore the Facts</a>
+                    <a href="#sts" class="btn btn-outline">Learn About STS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Facts Section -->
+    <section class="key-facts" id="key-facts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key Facts About Biodiversity</h2>
+                <p>Critical statistics that highlight the importance of biodiversity for human health and society</p>
+            </div>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Food Security</h3>
+                    <p>Over 75% of global food crops rely on pollinators, contributing US$ 235–577 billion annually to global agricultural output.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-pills"></i>
+                    <h3>Medicine</h3>
+                    <p>Over 50% of modern medicines are derived from natural sources, including antibiotics from fungi and painkillers from plant compounds.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>Climate Regulation</h3>
+                    <p>Forests store 80% of terrestrial biodiversity, absorbing approximately 2.6 billion tonnes of carbon dioxide annually.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Invasive Species</h3>
+                    <p>Invasive alien species contribute to 60% of species extinctions, causing US$ 423 billion in global economic damage each year.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>Freshwater Resources</h3>
+                    <p>Healthy ecosystems provide 75% of global freshwater resources. Since 1970, 35% of wetlands have been lost.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Indigenous Stewardship</h3>
+                    <p>Indigenous Peoples manage over 38 million km² of land globally, including nearly 40% of all protected areas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview" id="overview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Biodiversity Overview</h2>
+                <p>Understanding the foundation of all life on Earth</p>
+            </div>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <h3>The Web of Life</h3>
+                    <p>Biodiversity, the variability among living organisms from all sources, underpins all life on Earth. This includes diversity within species, between species and across ecosystems, representing the genetic makeup of plants, animals, microorganisms and the complexity of ecosystems.</p>
+                    <p>Healthy communities are sustained by well-functioning ecosystems, which provide critical services such as clean air, fresh water, natural medicines and food security. These ecosystems also regulate diseases and help stabilize the climate.</p>
+                    <p>However, biodiversity loss is accelerating at an unprecedented rate, with approximately 1 million species at risk of extinction, threatening these vital services and exacerbating public health risks globally.</p>
+                </div>
+                <div class="overview-image">
+                    <img src="biodiversity-ecosystem.jpg" alt="Biodiversity Ecosystem">
+                </div>
+            </div>
+            
+            <!-- Visual Aid: Biodiversity Pyramid -->
+            <div class="biodiversity-pyramid">
+                <h3 class="pyramid-title">The Biodiversity Pyramid</h3>
+                <div class="pyramid-levels">
+                    <div class="pyramid-level">
+                        <i class="fas fa-dna level-icon"></i>
+                        <div class="level-content">
+                            <h4>Genetic Diversity</h4>
+                            <p>Variation of genes within a species, enabling adaptation to changing environments.</p>
+                        </div>
+                    </div>
+                    <div class="pyramid-level">
+                        <i class="fas fa-paw level-icon"></i>
+                        <div class="level-content">
+                            <h4>Species Diversity</h4>
+                            <p>Variety of species within a habitat or region, forming the building blocks of ecosystems.</p>
+                        </div>
+                    </div>
+                    <div class="pyramid-level">
+                        <i class="fas fa-tree level-icon"></i>
+                        <div class="level-content">
+                            <h4>Ecosystem Diversity</h4>
+                            <p>Variety of ecosystems in a given place, each with unique interactions and functions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Threats to Biodiversity Section -->
+    <section class="threats" id="threats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Threats to Biodiversity</h2>
+                <p>Understanding the mounting crisis that threatens all life on Earth</p>
+            </div>
+            <div class="threats-content">
+                <div class="threats-text">
+                    <h3>Our Fragile Web of Life</h3>
+                    <p>Without nature, we are nothing. Yet humans are destroying the environment and the living creatures that call our planet home at unprecedented rates — at our own peril. From increasing the threat of disease to disrupting our global food chain, biodiversity loss across the globe is threatening the very foundation of our future and the well-being of everyone, everywhere.</p>
+                    
+                    <p>The devastating effects of climate change on human health are already on display: famines triggered by once-in-a-century droughts or flooding; death and suffering wrought by some of the strongest hurricanes and heat waves in modern history.</p>
+                    
+                    <p>But what is less well known is how biodiversity loss is harming our health and threatening the basic ecological cycles that keep us alive.</p>
+                    
+                    <blockquote>
+                        "Humanity has become a weapon of mass extinction. ... And ultimately, we are committing suicide by proxy."
+                        <cite>— UN Secretary-General António Guterres</cite>
+                    </blockquote>
+                    
+                    <p>One reporter called biodiversity loss a "mounting under-the-radar crisis," and disturbing signs are appearing all over the globe, from beaches awash in sargassum seaweed to massive fish die-offs in polluted waterways. In fact, according to the United Nations Environment Programme, biodiversity is declining faster than at any other time in human history. Right now more than 1 million species are facing extinction.</p>
+                </div>
+                <div class="threats-image">
+                    <img src="threats-biodiversity.jpg" alt="Threats to Biodiversity">
+                </div>
+            </div>
+            
+            <div class="threats-grid">
+                <div class="threat-card">
+                    <div class="threat-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Habitat Destruction</h3>
+                    <p>One-third of the planet's land is now degraded, making it harder to feed our growing global population. Forests, wetlands, and other critical ecosystems are being cleared at alarming rates.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Unsustainable Practices</h3>
+                    <p>Industrial practices like oil drilling, fracking, mining, and factory farming are destroying ecosystems while displacing, contaminating, and killing countless species.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>Overexploitation</h3>
+                    <p>Overfishing, illegal wildlife trade, and unsustainable harvesting are pushing many species to the brink of extinction and disrupting delicate ecological balances.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h3>Climate Change</h3>
+                    <p>Rising temperatures, ocean acidification, and extreme weather events are disrupting ecosystems and threatening species that cannot adapt quickly enough.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon">
+                        <i class="fas fa-virus"></i>
+                    </div>
+                    <h3>Zoonotic Spillover</h3>
+                    <p>Habitat destruction brings humans and wildlife into closer contact, dramatically increasing our risk of exposure to pathogens that jump from animals to humans.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                    <h3>Pollution</h3>
+                    <p>Plastic pollution, chemical runoff, and air pollution are poisoning our land, water, and air, harming both wildlife and human health.</p>
+                </div>
+            </div>
+            
+<!-- Visual Aid: Threat Timeline -->
+<div class="threat-timeline">
+    <h3 class="timeline-title">Global Biodiversity Protection Timeline</h3>
+    
+    <!-- Timeline Overview -->
+    <div class="timeline-overview">
+        <div class="overview-content">
+            <div class="overview-item">
+                <div class="overview-year">2025</div>
+                <div class="overview-text">COP16 biodiversity negotiations</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-year">2024</div>
+                <div class="overview-text">Nature restoration law & COP16 preparations</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-year">2023</div>
+                <div class="overview-text">Nature restoration agreements</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-year">2022</div>
+                <div class="overview-text">COP15 & Kunming-Montreal framework</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-year">2020-2021</div>
+                <div class="overview-text">EU Biodiversity Strategy 2030</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-year">2010-2019</div>
+                <div class="overview-text">Mid-term reviews & strategy development</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-year">2000-2009</div>
+                <div class="overview-text">Early biodiversity policy development</div>
+            </div>
+        </div>
+        <button class="expand-timeline-btn">
+            <span>View Full Timeline</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+    
+    <!-- Full Timeline (Initially Hidden) -->
+    <div class="full-timeline" id="fullTimeline">
+        <div class="timeline">
+            <!-- 2025 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>28 February 2025</h4>
+                    <p>Positive outcome of COP16 biodiversity negotiations. A follow-up meeting resulted in adoption of strategy for resource mobilisation and enhanced monitoring framework.</p>
+                    <a href="https://environment.ec.europa.eu/news/eu-welcomes-positive-cop16-biodiversity-negotiations-outcome-2025-02-28_en" target="_blank" class="timeline-link">EU welcomes positive outcome of COP16 biodiversity negotiations in Rome</a>
+                </div>
+            </div>
+            
+            <!-- 2024 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>14 October 2024</h4>
+                    <p>UN biodiversity convention: EU reaffirms global pledge to protect a third of the planet by 2030. Council approved conclusions for COP16 negotiations.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2024/10/14/un-biodiversity-convention-eu-reaffirms-global-pledge-to-protect-a-third-of-the-planet-by-2030/" target="_blank" class="timeline-link">UN biodiversity convention: EU reaffirms global pledge to protect a third of the planet by 2030</a>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>17 June 2024</h4>
+                    <p>Council gives final green light to nature restoration law, aiming to restore at least 20% of EU's land and sea areas by 2030.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2024/06/17/nature-restoration-law-council-gives-final-green-light/" target="_blank" class="timeline-link">Nature restoration law: Council gives final green light</a>
+                </div>
+            </div>
+            
+            <!-- 2023 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>9 November 2023</h4>
+                    <p>Council and Parliament reach agreement on new rules to restore and preserve degraded habitats in the EU.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2023/11/09/nature-restoration-council-and-parliament-reach-agreement-on-new-rules-to-restore-and-preserve-degraded-habitats-in-the-eu/" target="_blank" class="timeline-link">Nature restoration: Council and Parliament reach agreement on new rules</a>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>20 June 2023</h4>
+                    <p>Council reaches agreement on the nature restoration law, setting specific legally binding targets for nature restoration.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2023/06/20/council-reaches-agreement-on-the-nature-restoration-law/" target="_blank" class="timeline-link">Council reaches agreement on the nature restoration law</a>
+                </div>
+            </div>
+            
+            <!-- 2022 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>20 December 2022</h4>
+                    <p>Restoring nature: ministers discuss 2030 targets and held policy debate on nature restoration regulation.</p>
+                    <a href="https://www.consilium.europa.eu/en/meetings/env/2022/12/20/" target="_blank" class="timeline-link">Environment Council, 20 December 2022</a>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>7-19 December 2022</h4>
+                    <p>New global framework for biodiversity adopted at UN summit COP15 with historic Kunming-Montreal global biodiversity framework.</p>
+                    <a href="https://environment.ec.europa.eu/topics/nature-and-biodiversity/global-biodiversity_en" target="_blank" class="timeline-link">EU at COP15 (European Commission)</a>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>29 November 2022</h4>
+                    <p>EU and ACP countries call for ambitious agreement to protect biodiversity at COP15 meeting.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2022/11/29/cop15-the-european-union-and-the-organisation-of-african-caribbean-and-pacific-states-call-for-an-ambitious-global-agreement/" target="_blank" class="timeline-link">COP15: EU and OACPS call for ambitious global agreement</a>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>24 October 2022</h4>
+                    <p>Council agrees on EU position for UN biodiversity summit, calling for ambitious global biodiversity framework.</p>
+                    <a href="https://www.consilium.europa.eu/en/meetings/env/2022/10/24/" target="_blank" class="timeline-link">Environment Council, 24 October 2022</a>
+                </div>
+            </div>
+            
+            <!-- 2021 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>16 March 2021</h4>
+                    <p>LIFE programme – Council adopts its position at first reading for 2021-2027, EU's flagship programme for nature and biodiversity protection.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2021/03/16/life-programme-council-adopts-its-position-at-first-reading/" target="_blank" class="timeline-link">LIFE programme – Council adopts its position at first reading</a>
+                </div>
+            </div>
+            
+            <!-- 2020 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>17 December 2020</h4>
+                    <p>LIFE programme: Council presidency reaches provisional political agreement with Parliament on extension beyond 2020.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2020/12/17/life-programme-council-presidency-reaches-provisional-political-agreement-with-parliament/" target="_blank" class="timeline-link">LIFE programme – Council Presidency reaches provisional agreement</a>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>23 October 2020</h4>
+                    <p>Council adopts conclusions on the EU biodiversity strategy for 2030, endorsing objectives and recognising need to step up efforts.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2020/10/23/council-adopts-conclusions-on-the-eu-biodiversity-strategy-for-2030/" target="_blank" class="timeline-link">Council adopts conclusions on EU biodiversity strategy for 2030</a>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>21 September 2020</h4>
+                    <p>UN Biodiversity Summit: Council sends united signal to step up global ambition for biodiversity, endorsing Leaders' Pledge for Nature.</p>
+                    <div class="multiple-links">
+                        <a href="https://www.consilium.europa.eu/en/press/press-releases/2020/09/21/un-biodiversity-summit-council-sends-a-united-signal-to-step-up-global-ambition-for-biodiversity/" target="_blank" class="timeline-link">UN Biodiversity Summit: Council sends united signal</a>
+                        <a href="https://www.un.org/pga/75/united-nations-summit-on-biodiversity/" target="_blank" class="timeline-link">UN Summit on Biodiversity</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>8 June 2020</h4>
+                    <p>EU agriculture ministers welcome Commission's biodiversity strategy as part of European Green Deal.</p>
+                    <div class="multiple-links">
+                        <a href="https://www.consilium.europa.eu/en/meetings/agrifish/2020/06/08/" target="_blank" class="timeline-link">Video conference of agriculture ministers</a>
+                        <a href="https://www.consilium.europa.eu/en/policies/european-green-deal/" target="_blank" class="timeline-link">European Green Deal</a>
+                        <a href="https://www.consilium.europa.eu/en/policies/cap-funding-rules-2023-2027/" target="_blank" class="timeline-link">CAP funding rules 2023-2027</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2019 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>19 December 2019</h4>
+                    <p>Council adopts conclusions on biodiversity, calling for ambitious 2030 EU biodiversity strategy as central element of European Green Deal.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2019/12/19/biodiversity-council-adopts-conclusions/" target="_blank" class="timeline-link">Biodiversity - Council adopts conclusions</a>
+                </div>
+            </div>
+            
+            <!-- 2018 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>9 October 2018</h4>
+                    <p>Biodiversity: Council adopts conclusions expressing deep concern about natural resource base and calling for ambitious strategic plan beyond 2020.</p>
+                    <a href="https://www.consilium.europa.eu/en/press/press-releases/2018/10/09/biodiversity-council-adopts-conclusions/" target="_blank" class="timeline-link">Biodiversity: Council adopts conclusions</a>
+                </div>
+            </div>
+            
+            <!-- 2016 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>17 October 2016</h4>
+                    <p>Conclusions ahead of meeting of parties to Convention on Biological Diversity, stressing need to act at international level to halt biodiversity loss.</p>
+                    <a href="https://www.consilium.europa.eu/en/meetings/env/2016/10/17/" target="_blank" class="timeline-link">Environment Council, 17 October 2016</a>
+                </div>
+            </div>
+            
+            <!-- 2015 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>16 December 2015</h4>
+                    <p>Conclusions on mid-term review of EU biodiversity strategy, pointing out areas where further work needed to reach targets.</p>
+                    <a href="https://www.consilium.europa.eu/en/meetings/env/2015/12/16/" target="_blank" class="timeline-link">Environment Council, 16 December 2015</a>
+                </div>
+            </div>
+            
+            <!-- 2010 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>15 March 2010</h4>
+                    <p>EU sets headline target on halting the loss of biodiversity by 2020 and vision for better protection by 2050.</p>
+                    <a href="https://register.consilium.europa.eu/doc/srv?l=EN&f=ST%207536%202010%20INIT" target="_blank" class="timeline-link">Council conclusions on EU and global vision for biodiversity</a>
+                </div>
+            </div>
+            
+            <!-- 2009 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>22 December 2009</h4>
+                    <p>Council adopts conclusions on international biodiversity beyond 2010, highlighting importance of re-energising political momentum.</p>
+                    <a href="https://data.consilium.europa.eu/doc/document/ST%2017785%202009%20INIT/EN/pdf" target="_blank" class="timeline-link">Council conclusions on biodiversity beyond 2010</a>
+                </div>
+            </div>
+        </div>
+        
+        <button class="collapse-timeline-btn">
+            <span>Collapse Timeline</span>
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+    
+    <div class="timeline-source">
+        <p>Source: <a href="https://www.consilium.europa.eu/en/policies/biodiversity/timeline-biodiversity/" target="_blank">European Council - Timeline of biodiversity policy</a></p>
+    </div>
+</div>
+
+            
+            <div class="case-study">
+                <div class="case-study-content">
+                    <div class="case-study-image">
+                        <img src="amazon-case-study.jpg" alt="Amazon Rainforest">
+                    </div>
+                    <div class="case-study-text">
+                        <h3>Case Study: The Amazon Rainforest</h3>
+                        <p>There are few places on the planet where the threat of biodiversity loss is more evident than the Amazon, which is being destroyed by record levels of deforestation despite being home to one-third of the planet's species — the greatest concentration of biodiversity on Earth.</p>
+                        
+                        <p>Because habitat destruction brings humans and wildlife into closer contact, it dramatically increases our risk of exposure to "zoonotic spillover," which occurs when pathogens jump from animals to humans. In fact, more than 75% of emerging infectious diseases in humans are caused by pathogens that originally circulated in animals.</p>
+                        
+                        <p>Dr. Alessandra Nava, a veterinary scientist based in the Brazilian city of Manaus, has made the rainforest her laboratory. She has dedicated her career to collecting samples from small mammals for the Fiocruz Amazônia Biobank, part of a growing effort to track the spread of zoonotic pathogens, and perhaps ultimately help predict or even prevent another pandemic.</p>
+                        
+                        <p>Her work exemplifies a holistic approach, fittingly dubbed "One Health," that recognizes the indivisible link between animal, human, and environmental well-being.</p>
+                        
+                        <blockquote>
+                            "When we keep the forest intact, it serves as a buffer zone."
+                            <cite>— Dr. Alessandra Nava, Veterinary Scientist</cite>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="solutions-preview">
+                <h3>Solutions to Protect Biodiversity</h3>
+                <p>Despite these challenges, solutions exist to restore and preserve our planet's ecological well-being:</p>
+                <ul>
+                    <li><strong>Protecting and restoring natural habitats:</strong> Conservation is key to maintaining the delicate balance of our ecosystems.</li>
+                    <li><strong>Prioritizing island nations:</strong> Islands host 20% of Earth's species despite covering less than 4% of its surface.</li>
+                    <li><strong>Supporting sustainable practices:</strong> From agriculture to fishing to land use, we need approaches that work with nature.</li>
+                    <li><strong>Respecting Indigenous knowledge:</strong> Indigenous communities have long served as the planet's most effective environmental stewards.</li>
+                </ul>
+                
+                <div class="cta-mini">
+                    <p>"Without nature, we have nothing. Without nature, we are nothing." — UN Secretary-General António Guterres</p>
+                    <a href="#sts" class="btn">Learn How STS Can Help</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact" id="impact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Impact of Biodiversity Loss</h2>
+                <p>How biodiversity decline affects human health, economies, and societies</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-image">
+                        <img src="health-impact.jpg" alt="Health Impact">
+                    </div>
+                    <div class="impact-text">
+                        <h3>Health Impacts</h3>
+                        <p>Human health relies on ecosystem resources, products and services. Biodiversity loss can have significant direct health impacts if ecosystem services no longer meet societal needs.</p>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-image">
+                        <img src="economic-impact.jpg" alt="Economic Impact">
+                    </div>
+                    <div class="impact-text">
+                        <h3>Economic Consequences</h3>
+                        <p>The global economic impact of biodiversity loss amounts to US$ 10 trillion annually, including healthcare costs from increased disease transmission and agricultural losses.</p>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-image">
+                        <img src="social-impact.jpg" alt="Social Impact">
+                    </div>
+                    <div class="impact-text">
+                        <h3>Social Disruption</h3>
+                        <p>Changes in ecosystems can affect livelihoods, income, local migration and may even cause or increase political conflict.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Issues Section -->
+    <section class="health-issues" id="health">
+        <div class="container">
+            <div class="section-title">
+                <h2>Global Health Issues & Biodiversity</h2>
+                <p>How biodiversity loss contributes to major health challenges</p>
+            </div>
+            <div class="health-grid">
+                <div class="health-card">
+                    <h3><i class="fas fa-lungs-virus"></i> Long COVID</h3>
+                    <p>The health impact of long COVID often disrupts a person's ability to engage with school, work, or relationships for months at a time. People with long COVID need diagnostic and proper rehabilitation support.</p>
+                </div>
+                <div class="health-card">
+                    <h3><i class="fas fa-heartbeat"></i> Cardiovascular Disease</h3>
+                    <p>Cardiovascular diseases are the leading causes of death globally, accounting for 28% of total deaths in 2021. Most can be prevented by addressing modifiable risk factors such as high blood pressure, obesity, and air pollution.</p>
+                </div>
+                <div class="health-card">
+                    <h3><i class="fas fa-lungs"></i> Lower Respiratory Infections</h3>
+                    <p>Lower respiratory infections, such as pneumonia and bronchitis, affect the lungs and breathing passages. These infections can be severe, especially for vulnerable populations.</p>
+                </div>
+                <div class="health-card">
+                    <h3><i class="fas fa-virus"></i> HIV/AIDS</h3>
+                    <p>HIV, the virus that causes AIDS, has become one of the world's most serious health challenges since the first cases were reported in 1981. Approximately 86 million people have become infected with HIV since the start of the epidemic.</p>
+                </div>
+                <div class="health-card">
+                    <h3><i class="fas fa-mosquito"></i> Infectious Diseases</h3>
+                    <p>Over 75% of emerging infectious diseases are zoonotic and often arise in areas where ecosystems have been disrupted by deforestation or land-use change.</p>
+                </div>
+                <div class="health-card">
+                    <h3><i class="fas fa-thermometer-full"></i> Climate-Related Health Risks</h3>
+                    <p>The destruction of ecosystems accelerates climate change, leading to increased heatwaves, floods, and other climate-related health risks, including heat-stress and malnutrition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology" id="technology">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technological Advancements in Health Care</h2>
+                <p>How technology is revolutionizing healthcare and biodiversity conservation</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="wearable-tech.jpg" alt="Wearable Technology">
+                    </div>
+                    <div class="tech-text">
+                        <h3>Wearable Health Technology</h3>
+                        <p>Wearables provide continuous monitoring, early detection, and personalized treatment, helping reduce healthcare costs while improving outcomes.</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="telemedicine.jpg" alt="Telemedicine">
+                    </div>
+                    <div class="tech-text">
+                        <h3>Telemedicine</h3>
+                        <p>Telemedicine enables virtual communication between patients and physicians, eliminating the need for patients to travel to clinics while maintaining quality care.</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="robotic-surgery.jpg" alt="Robotic Surgery">
+                    </div>
+                    <div class="tech-text">
+                        <h3>Robotic Surgical Systems</h3>
+                        <p>Robotic surgery helps doctors perform complex operations with more accuracy, flexibility, and control than traditional methods.</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="mrna-tech.jpg" alt="mRNA Technology">
+                    </div>
+                    <div class="tech-text">
+                        <h3>mRNA Technology</h3>
+                        <p>mRNA technology holds promise for treating various diseases, including cancer and genetic disorders, building on its success with COVID-19 vaccines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STS Connection Section -->
+    <section class="sts-connection" id="sts">
+        <div class="container">
+            <div class="section-title">
+                <h2>The STS Connection</h2>
+                <p>How Science, Technology, and Society intersect in addressing biodiversity threats</p>
+            </div>
+            <div class="sts-content">
+                <div class="sts-text">
+                    <h3>An Integrated Approach to Biodiversity Conservation</h3>
+                    <p>In today's interconnected world, the dynamic relationship between science, technology, and health is at the forefront of societal progress. Advancements in science and technology have revolutionized healthcare, leading to breakthroughs in treatment, diagnosis, and prevention of diseases.</p>
+                    <p>The relationship between biodiversity and human society is complex and bidirectional. While human activities drive biodiversity loss, the resulting ecological degradation threatens human health, food security, and social stability.</p>
+                    <p>Science provides the evidence base for understanding these threats, technology offers tools for monitoring and mitigation, while society determines the values, policies, and behaviors that shape our relationship with nature.</p>
+                    <p>It's important that we work together across different areas, like science and ethics, and make fair rules so that everyone can benefit from these new ideas in science, technology, and health.</p>
+                </div>
+                <div class="sts-image">
+                    <img src="sts-connection.jpg" alt="Science, Technology, Society Connection">
+                </div>
+            </div>
+            
+            <!-- Visual Aid: STS Interconnection Diagram - IMPROVED -->
+            <div class="sts-diagram">
+                <h3 class="diagram-title">The STS Interconnection</h3>
+                <div class="diagram-container">
+                    <div class="diagram-element">
+                        <div class="element-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h4>Science</h4>
+                        <p>Provides evidence-based understanding of biodiversity threats and impacts</p>
+                    </div>
+                    <div class="diagram-element">
+                        <div class="element-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4>Technology</h4>
+                        <p>Offers tools for monitoring, mitigation, and conservation solutions</p>
+                    </div>
+                    <div class="diagram-element">
+                        <div class="element-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Society</h4>
+                        <p>Determines values, policies, and behaviors that shape our relationship with nature</p>
+                    </div>
+                </div>
+                <div class="diagram-connections">
+                    <div class="connection-line"></div>
+                    <div class="connection-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Join the Movement for Biodiversity Conservation</h2>
+            <p>Explore how science, technology, and societal action can work together to address biodiversity threats and create a healthier relationship between humans and nature.</p>
+            <a href="#key-facts" class="btn">Learn More & Get Involved</a>
+        </div>
+    </section>
+
+    <!-- Editorial Staff Section -->
+    <section class="editorial-staff" id="editorial-staff">
+        <div class="container">
+            <div class="section-title">
+                <h2>Editorial Staff</h2>
+                <p>Meet the dedicated team behind this educational resource</p>
+            </div>
+            <div class="staff-grid">
+                <div class="staff-card">
+                    <div class="staff-info">
+                        <h3>Espina, Elpidio S.</h3>
+                        <p>Assistant Developer</p>
+                    </div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-info">
+                        <h3>Gatpandan, Kate Lourdes F.</h3>
+                        <p>Developer</p>
+                    </div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-info">
+                        <h3>Liwanag, Allanis Murray S.</h3>
+                        <p>Visual Designer</p>
+                    </div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-info">
+                        <h3>Onari, Ryza Joy M.</h3>
+                        <p>Web Designer</p>
+                    </div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-info">
+                        <h3>Palomo, Janelle Victoria D.</h3>
+                        <p>Leader</p>
+                    </div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-info">
+                        <h3>Roxas, Heaven Kay G.</h3>
+                        <p>Visual Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About This Project</h3>
+                    <p>An educational resource exploring the connections between biodiversity threats, human society, science, and technology.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Key Sections</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#key-facts">Key Facts</a></li>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#threats">Threats</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                        <li><a href="#health">Health Issues</a></li>
+                        <li><a href="#technology">Technology</a></li>
+                        <li><a href="#sts">STS Connection</a></li>
+                        <li><a href="#editorial-staff">Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Scientific Research</a></li>
+                        <li><a href="#">Technology Solutions</a></li>
+                        <li><a href="#">Policy Frameworks</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Educational Materials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Biodiversity Threats & Healthy Society | Science, Technology & Society</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Search Functionality - Updated
+        const searchToggle = document.querySelector('.search-toggle');
+        const searchBar = document.querySelector('.search-bar');
+        const searchInput = document.querySelector('.search-input');
+
+        // Toggle search bar visibility
+        searchToggle.addEventListener('click', () => {
+            searchBar.classList.toggle('active');
+            if (searchBar.classList.contains('active')) {
+                searchInput.focus();
+            }
+        });
+
+        // Close search bar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchToggle.contains(e.target) && !searchBar.contains(e.target)) {
+                searchBar.classList.remove('active');
+            }
+        });
+
+        // Close search bar on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                searchBar.classList.remove('active');
+                searchInput.value = '';
+                
+                // Also close search results if open
+                const existingResults = document.querySelector('.search-results');
+                if (existingResults) {
+                    existingResults.remove();
+                }
+            }
+        });
+
+        // Sample search data - you can expand this with more content
+        const searchData = [
+            { title: "Food Security", content: "Over 75% of global food crops rely on pollinators, contributing US$ 235–577 billion annually to global agricultural output.", section: "key-facts" },
+            { title: "Medicine", content: "Over 50% of modern medicines are derived from natural sources, including antibiotics from fungi and painkillers from plant compounds.", section: "key-facts" },
+            { title: "Climate Regulation", content: "Forests store 80% of terrestrial biodiversity, absorbing approximately 2.6 billion tonnes of carbon dioxide annually.", section: "key-facts" },
+            { title: "Invasive Species", content: "Invasive alien species contribute to 60% of species extinctions, causing US$ 423 billion in global economic damage each year.", section: "key-facts" },
+            { title: "Freshwater Resources", content: "Healthy ecosystems provide 75% of global freshwater resources. Since 1970, 35% of wetlands have been lost.", section: "key-facts" },
+            { title: "Indigenous Stewardship", content: "Indigenous Peoples manage over 38 million km² of land globally, including nearly 40% of all protected areas.", section: "key-facts" },
+            { title: "Habitat Destruction", content: "One-third of the planet's land is now degraded, making it harder to feed our growing global population. Forests, wetlands, and other critical ecosystems are being cleared at alarming rates.", section: "threats" },
+            { title: "Unsustainable Practices", content: "Industrial practices like oil drilling, fracking, mining, and factory farming are destroying ecosystems while displacing, contaminating, and killing countless species.", section: "threats" },
+            { title: "Zoonotic Spillover", content: "Habitat destruction brings humans and wildlife into closer contact, dramatically increasing our risk of exposure to pathogens that jump from animals to humans.", section: "threats" },
+            { title: "Amazon Rainforest Case Study", content: "The Amazon is being destroyed by record levels of deforestation despite being home to one-third of the planet's species — the greatest concentration of biodiversity on Earth.", section: "threats" },
+            { title: "Health Impacts", content: "Human health relies on ecosystem resources, products and services. Biodiversity loss can have significant direct health impacts if ecosystem services no longer meet societal needs.", section: "impact" },
+            { title: "Economic Consequences", content: "The global economic impact of biodiversity loss amounts to US$ 10 trillion annually, including healthcare costs from increased disease transmission and agricultural losses.", section: "impact" },
+            { title: "Social Disruption", content: "Changes in ecosystems can affect livelihoods, income, local migration and may even cause or increase political conflict.", section: "impact" },
+            { title: "Long COVID", content: "The health impact of long COVID often disrupts a person's ability to engage with school, work, or relationships for months at a time. People with long COVID need diagnostic and proper rehabilitation support.", section: "health" },
+            { title: "Cardiovascular Disease", content: "Cardiovascular diseases are the leading causes of death globally, accounting for 28% of total deaths in 2021. Most can be prevented by addressing modifiable risk factors such as high blood pressure, obesity, and air pollution.", section: "health" },
+            { title: "Lower Respiratory Infections", content: "Lower respiratory infections, such as pneumonia and bronchitis, affect the lungs and breathing passages. These infections can be severe, especially for vulnerable populations.", section: "health" },
+            { title: "Infectious Diseases", content: "Over 75% of emerging infectious diseases are zoonotic and often arise in areas where ecosystems have been disrupted by deforestation or land-use change.", section: "health" },
+            { title: "Wearable Health Technology", content: "Wearables provide continuous monitoring, early detection, and personalized treatment, helping reduce healthcare costs while improving outcomes.", section: "technology" },
+            { title: "Telemedicine", content: "Telemedicine enables virtual communication between patients and physicians, eliminating the need for patients to travel to clinics while maintaining quality care.", section: "technology" },
+            { title: "Robotic Surgical Systems", content: "Robotic surgery helps doctors perform complex operations with more accuracy, flexibility, and control than traditional methods.", section: "technology" },
+            { title: "mRNA Technology", content: "mRNA technology holds promise for treating various diseases, including cancer and genetic disorders, building on its success with COVID-19 vaccines.", section: "technology" },
+            { title: "STS Connection", content: "The relationship between biodiversity and human society is complex and bidirectional. While human activities drive biodiversity loss, the resulting ecological degradation threatens human health, food security, and social stability.", section: "sts" }
+        ];
+
+        // Function to perform search
+        function performSearch(query) {
+            if (!query.trim()) return;
+            
+            const results = searchData.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase()) ||
+                item.content.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            displaySearchResults(results, query);
+        }
+
+        // Function to display search results
+        function displaySearchResults(results, query) {
+            // Remove existing search results if any
+            const existingResults = document.querySelector('.search-results');
+            if (existingResults) {
+                existingResults.remove();
+            }
+            
+            if (results.length === 0) {
+                // No results found
+                const noResults = document.createElement('div');
+                noResults.className = 'search-results';
+                noResults.innerHTML = `
+                    <div class="search-results-content">
+                        <h3>No results found for "${query}"</h3>
+                        <p>Try searching with different keywords.</p>
+                        <button class="close-results">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(noResults);
+                
+                // Close results when clicking close button
+                noResults.querySelector('.close-results').addEventListener('click', () => {
+                    noResults.remove();
+                });
+                
+                // Close results when clicking outside
+                noResults.addEventListener('click', (e) => {
+                    if (e.target === noResults) {
+                        noResults.remove();
+                    }
+                });
+                
+                return;
+            }
+            
+            // Create results container
+            const resultsContainer = document.createElement('div');
+            resultsContainer.className = 'search-results';
+            resultsContainer.innerHTML = `
+                <div class="search-results-content">
+                    <h3>Search Results for "${query}"</h3>
+                    <div class="results-list">
+                        ${results.map(result => `
+                            <div class="result-item" data-section="${result.section}">
+                                <h4>${result.title}</h4>
+                                <p>${result.content.substring(0, 100)}...</p>
+                                <span class="result-section">${result.section.replace('-', ' ').toUpperCase()}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="close-results">Close</button>
+                </div>
+            `;
+            
+            document.body.appendChild(resultsContainer);
+            
+            // Add event listeners to result items
+            resultsContainer.querySelectorAll('.result-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const section = item.getAttribute('data-section');
+                    const targetElement = document.getElementById(section);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close search results
+                        resultsContainer.remove();
+                        
+                        // Clear search bar and close it
+                        searchInput.value = '';
+                        searchBar.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Close results when clicking close button
+            resultsContainer.querySelector('.close-results').addEventListener('click', () => {
+                resultsContainer.remove();
+            });
+            
+            // Close results when clicking outside
+            resultsContainer.addEventListener('click', (e) => {
+                if (e.target === resultsContainer) {
+                    resultsContainer.remove();
+                }
+            });
+        }
+
+        // Event listeners for search
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim();
+                if (query) {
+                    performSearch(query);
+                }
+            }
+        });
+
+        // Timeline Expand/Collapse Functionality
+        const expandBtn = document.querySelector('.expand-timeline-btn');
+        const collapseBtn = document.querySelector('.collapse-timeline-btn');
+        const fullTimeline = document.getElementById('fullTimeline');
+
+        if (expandBtn && collapseBtn && fullTimeline) {
+            expandBtn.addEventListener('click', () => {
+                fullTimeline.classList.add('active');
+                // Scroll to the full timeline
+                fullTimeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            collapseBtn.addEventListener('click', () => {
+                fullTimeline.classList.remove('active');
+                // Scroll back to the overview
+                document.querySelector('.timeline-overview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    if(navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                    
+                    // Close search bar if open
+                    searchBar.classList.remove('active');
+                }
+            });
+        });
+
+        // Active Navigation Link
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if(pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

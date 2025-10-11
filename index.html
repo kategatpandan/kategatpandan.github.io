@@ -1511,6 +1511,268 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Quiz Section Styles */
+.quiz-section {
+    padding: 6rem 0;
+    background-color: var(--light-bg);
+}
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.quiz-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 3rem;
+    align-items: center;
+}
+
+.quiz-image {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.quiz-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.quiz-info h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    font-size: 1.6rem;
+}
+
+.quiz-info ul {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.quiz-info li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.quiz-info li i {
+    color: var(--primary);
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.quiz-progress {
+    flex: 1;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--secondary);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.quiz-score {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.question-container {
+    padding: 2rem;
+}
+
+.question-text {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.option {
+    padding: 1.2rem 1.5rem;
+    background-color: var(--light-bg);
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.option:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-color: var(--primary-light);
+}
+
+.option.correct {
+    background-color: rgba(76, 175, 80, 0.15);
+    border-color: var(--primary);
+    color: var(--primary-dark);
+}
+
+.option.incorrect {
+    background-color: rgba(231, 76, 60, 0.15);
+    border-color: #e74c3c;
+    color: #c0392b;
+}
+
+.quiz-feedback {
+    padding: 2rem;
+    background-color: var(--light-bg);
+    border-top: 1px solid #e0e0e0;
+}
+
+.feedback-content h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.feedback-content h4.correct {
+    color: var(--primary);
+}
+
+.feedback-content h4.incorrect {
+    color: #e74c3c;
+}
+
+.next-question-btn {
+    margin-top: 1.5rem;
+}
+
+.quiz-results {
+    padding: 3rem;
+    text-align: center;
+}
+
+.results-content h3 {
+    margin-bottom: 2rem;
+    color: var(--primary-dark);
+    font-size: 1.8rem;
+}
+
+.score-circle {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 2rem;
+}
+
+.circle-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--light-bg);
+    border: 10px solid #e0e0e0;
+}
+
+.circle-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-percentage {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.score-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.results-message {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.results-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .quiz-intro {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+    
+    .quiz-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .quiz-progress {
+        width: 100%;
+    }
+    
+    .results-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .question-container,
+    .quiz-feedback,
+    .quiz-results {
+        padding: 1.5rem;
+    }
+    
+    .score-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .score-percentage {
+        font-size: 2rem;
+    }
+}
+
         /* Editorial Staff Section - IMPROVED */
         .editorial-staff {
             padding: 6rem 0;
@@ -1827,6 +2089,7 @@
                         <li><a href="#health">Health Issues</a></li>
                         <li><a href="#technology">Technology</a></li>
                         <li><a href="#sts">STS Connection</a></li>
+                        <li><a href="#quiz">Quiz</a></li>
                         <li><a href="#editorial-staff">Our Team</a></li>
                     </ul>
                 </nav>
@@ -2489,6 +2752,79 @@
         </div>
     </section>
 
+<!-- Interactive Quiz Section -->
+<section class="quiz-section" id="quiz">
+    <div class="container">
+        <div class="section-title">
+            <h2>Test Your Knowledge</h2>
+            <p>Take our interactive quiz to see how much you know about biodiversity and its importance</p>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="quiz-intro" id="quizIntro">
+                <div class="quiz-image">
+                    <img src="quiz-biodiversity.jpg" alt="Biodiversity Quiz">
+                </div>
+                <div class="quiz-info">
+                    <h3>Biodiversity Quiz Challenge</h3>
+                    <p>This quiz will test your knowledge about biodiversity threats, conservation efforts, and the relationship between ecosystems and human health.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 10 multiple-choice questions</li>
+                        <li><i class="fas fa-check-circle"></i> Instant feedback with explanations</li>
+                        <li><i class="fas fa-check-circle"></i> Learn interesting facts about biodiversity</li>
+                    </ul>
+                    <button class="btn start-quiz-btn" id="startQuiz">Start Quiz</button>
+                </div>
+            </div>
+            
+            <div class="quiz-content" id="quizContent" style="display: none;">
+                <div class="quiz-header">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">Question 1 of 10</span>
+                    </div>
+                    <div class="quiz-score">
+                        Score: <span id="scoreValue">0</span>
+                    </div>
+                </div>
+                
+                <div class="question-container">
+                    <h3 class="question-text" id="questionText"></h3>
+                    <div class="options-container" id="optionsContainer"></div>
+                </div>
+                
+                <div class="quiz-feedback" id="quizFeedback" style="display: none;">
+                    <div class="feedback-content">
+                        <h4 id="feedbackTitle"></h4>
+                        <p id="feedbackText"></p>
+                        <button class="btn next-question-btn" id="nextQuestion">Next Question</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-results" id="quizResults" style="display: none;">
+                <div class="results-content">
+                    <h3>Quiz Complete!</h3>
+                    <div class="score-circle">
+                        <div class="circle-background"></div>
+                        <div class="circle-content">
+                            <span class="score-percentage" id="scorePercentage">0%</span>
+                            <span class="score-label">Your Score</span>
+                        </div>
+                    </div>
+                    <p id="resultsMessage"></p>
+                    <div class="results-actions">
+                        <button class="btn retry-quiz-btn" id="retryQuiz">Try Again</button>
+                        <a href="#key-facts" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- Editorial Staff Section -->
     <section class="editorial-staff" id="editorial-staff">
         <div class="container">
@@ -2806,6 +3142,226 @@
                 document.querySelector('.timeline-overview').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         }
+
+// Quiz functionality
+const quizIntro = document.getElementById('quizIntro');
+const quizContent = document.getElementById('quizContent');
+const quizResults = document.getElementById('quizResults');
+const startQuizBtn = document.getElementById('startQuiz');
+const questionText = document.getElementById('questionText');
+const optionsContainer = document.getElementById('optionsContainer');
+const quizFeedback = document.getElementById('quizFeedback');
+const feedbackTitle = document.getElementById('feedbackTitle');
+const feedbackText = document.getElementById('feedbackText');
+const nextQuestionBtn = document.getElementById('nextQuestion');
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+const scoreValue = document.getElementById('scoreValue');
+const scorePercentage = document.getElementById('scorePercentage');
+const resultsMessage = document.getElementById('resultsMessage');
+const retryQuizBtn = document.getElementById('retryQuiz');
+
+let currentQuestion = 0;
+let score = 0;
+let userAnswers = [];
+
+// Quiz questions
+const quizQuestions = [
+    {
+        question: "What percentage of global food crops rely on pollinators?",
+        options: ["25%", "50%", "75%", "90%"],
+        correctAnswer: 2,
+        explanation: "Over 75% of global food crops rely on pollinators, contributing US$ 235–577 billion annually to global agricultural output."
+    },
+    {
+        question: "Which of these is NOT a major threat to biodiversity?",
+        options: ["Habitat destruction", "Climate change", "Overexploitation", "Solar energy"],
+        correctAnswer: 3,
+        explanation: "Solar energy is a renewable energy source and not a threat to biodiversity. The major threats include habitat destruction, climate change, and overexploitation."
+    },
+    {
+        question: "How many species are currently facing extinction according to the UN?",
+        options: ["100,000", "500,000", "1 million", "5 million"],
+        correctAnswer: 2,
+        explanation: "According to the United Nations, more than 1 million species are currently facing extinction due to human activities."
+    },
+    {
+        question: "What percentage of emerging infectious diseases are zoonotic?",
+        options: ["25%", "50%", "75%", "90%"],
+        correctAnswer: 2,
+        explanation: "Over 75% of emerging infectious diseases are zoonotic, meaning they jump from animals to humans, often due to habitat destruction."
+    },
+    {
+        question: "Which ecosystem stores the most terrestrial biodiversity?",
+        options: ["Deserts", "Grasslands", "Forests", "Oceans"],
+        correctAnswer: 2,
+        explanation: "Forests store 80% of terrestrial biodiversity, making them critical for maintaining global biodiversity."
+    },
+    {
+        question: "What is the estimated annual economic impact of biodiversity loss?",
+        options: ["$1 trillion", "$5 trillion", "$10 trillion", "$20 trillion"],
+        correctAnswer: 2,
+        explanation: "The global economic impact of biodiversity loss amounts to US$ 10 trillion annually, including healthcare costs and agricultural losses."
+    },
+    {
+        question: "Which group manages nearly 40% of all protected areas globally?",
+        options: ["Government agencies", "Private corporations", "Indigenous Peoples", "International NGOs"],
+        correctAnswer: 2,
+        explanation: "Indigenous Peoples manage over 38 million km² of land globally, including nearly 40% of all protected areas."
+    },
+    {
+        question: "What percentage of modern medicines are derived from natural sources?",
+        options: ["25%", "50%", "75%", "90%"],
+        correctAnswer: 1,
+        explanation: "Over 50% of modern medicines are derived from natural sources, including antibiotics from fungi and painkillers from plant compounds."
+    },
+    {
+        question: "Which international agreement set targets to protect 30% of the planet by 2030?",
+        options: ["Paris Agreement", "Kyoto Protocol", "Kunming-Montreal Framework", "Copenhagen Accord"],
+        correctAnswer: 2,
+        explanation: "The Kunming-Montreal Global Biodiversity Framework, adopted in 2022, set the target to protect 30% of the planet by 2030."
+    },
+    {
+        question: "What is the 'One Health' approach?",
+        options: [
+            "Focusing only on human health",
+            "A holistic approach linking animal, human, and environmental health",
+            "A diet plan for better health",
+            "A technology for health monitoring"
+        ],
+        correctAnswer: 1,
+        explanation: "The 'One Health' approach recognizes the indivisible link between animal, human, and environmental well-being."
+    }
+];
+
+// Start quiz
+startQuizBtn.addEventListener('click', () => {
+    quizIntro.style.display = 'none';
+    quizContent.style.display = 'block';
+    loadQuestion();
+});
+
+// Load question
+function loadQuestion() {
+    const question = quizQuestions[currentQuestion];
+    questionText.textContent = question.question;
+    
+    // Update progress
+    const progress = ((currentQuestion) / quizQuestions.length) * 100;
+    progressFill.style.width = `${progress}%`;
+    progressText.textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+    
+    // Clear previous options
+    optionsContainer.innerHTML = '';
+    
+    // Add new options
+    question.options.forEach((option, index) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option';
+        optionElement.textContent = option;
+        optionElement.dataset.index = index;
+        optionElement.addEventListener('click', selectOption);
+        optionsContainer.appendChild(optionElement);
+    });
+    
+    // Hide feedback
+    quizFeedback.style.display = 'none';
+}
+
+// Select option
+function selectOption(e) {
+    const selectedOption = e.target;
+    const selectedIndex = parseInt(selectedOption.dataset.index);
+    const question = quizQuestions[currentQuestion];
+    
+    // Disable all options
+    const allOptions = optionsContainer.querySelectorAll('.option');
+    allOptions.forEach(option => {
+        option.style.pointerEvents = 'none';
+    });
+    
+    // Check if correct
+    const isCorrect = selectedIndex === question.correctAnswer;
+    
+    if (isCorrect) {
+        selectedOption.classList.add('correct');
+        score++;
+        scoreValue.textContent = score;
+    } else {
+        selectedOption.classList.add('incorrect');
+        // Highlight correct answer
+        allOptions[question.correctAnswer].classList.add('correct');
+    }
+    
+    // Store user answer
+    userAnswers.push({
+        question: question.question,
+        userAnswer: selectedIndex,
+        correctAnswer: question.correctAnswer,
+        isCorrect: isCorrect
+    });
+    
+    // Show feedback
+    showFeedback(isCorrect, question.explanation);
+}
+
+// Show feedback
+function showFeedback(isCorrect, explanation) {
+    quizFeedback.style.display = 'block';
+    
+    if (isCorrect) {
+        feedbackTitle.textContent = 'Correct!';
+        feedbackTitle.className = 'correct';
+    } else {
+        feedbackTitle.textContent = 'Incorrect';
+        feedbackTitle.className = 'incorrect';
+    }
+    
+    feedbackText.textContent = explanation;
+}
+
+// Next question
+nextQuestionBtn.addEventListener('click', () => {
+    currentQuestion++;
+    
+    if (currentQuestion < quizQuestions.length) {
+        loadQuestion();
+    } else {
+        showResults();
+    }
+});
+
+// Show results
+function showResults() {
+    quizContent.style.display = 'none';
+    quizResults.style.display = 'block';
+    
+    const percentage = Math.round((score / quizQuestions.length) * 100);
+    scorePercentage.textContent = `${percentage}%`;
+    
+    // Set results message based on score
+    if (percentage >= 90) {
+        resultsMessage.textContent = "Excellent! You're a biodiversity expert! Your knowledge about ecosystems and conservation is impressive.";
+    } else if (percentage >= 70) {
+        resultsMessage.textContent = "Great job! You have a solid understanding of biodiversity issues and their importance to our planet.";
+    } else if (percentage >= 50) {
+        resultsMessage.textContent = "Good effort! You know some key facts about biodiversity, but there's more to learn about this critical topic.";
+    } else {
+        resultsMessage.textContent = "Don't worry! Biodiversity is a complex topic. Explore our website to learn more about these important issues.";
+    }
+}
+
+// Retry quiz
+retryQuizBtn.addEventListener('click', () => {
+    currentQuestion = 0;
+    score = 0;
+    userAnswers = [];
+    scoreValue.textContent = '0';
+    
+    quizResults.style.display = 'none';
+    quizContent.style.display = 'block';
+    loadQuestion();
+});
 
         // Smooth Scrolling for Navigation Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

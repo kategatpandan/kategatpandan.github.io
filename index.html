@@ -46,11 +46,11 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Header and Navigation */
+        /* Header and Navigation - UPDATED DESIGN */
         header {
             background-color: rgba(46, 125, 50, 0.95);
             color: var(--white);
-            padding: 1rem 0;
+            padding: 1.5rem 0 0;
             position: fixed;
             top: 0;
             width: 100%;
@@ -61,7 +61,7 @@
 
         .scrolled {
             background-color: rgba(46, 125, 50, 0.98);
-            padding: 0.7rem 0;
+            padding: 0.7rem 0 0;
         }
 
         .container {
@@ -72,12 +72,18 @@
 
         .header-content {
             display: flex;
+            flex-direction: column;
+        }
+
+        .header-top {
+            display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1rem;
         }
 
         .logo {
-            font-size: 1.6rem;
+            font-size: 2rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -85,16 +91,25 @@
 
         .logo i {
             margin-right: 10px;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1rem;
         }
 
         nav ul {
             display: flex;
             list-style: none;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         nav ul li {
-            margin-left: 1.5rem;
             position: relative;
         }
 
@@ -103,13 +118,18 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
+            padding: 0.7rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            display: block;
+            white-space: nowrap;
+            text-align: center;
         }
 
         nav ul li a:hover,
         nav ul li a.active {
             color: var(--secondary);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         nav ul li a.active::after {
@@ -127,6 +147,8 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--white);
+            background: none;
+            border: none;
         }
 
         /* Search Bar Styles */
@@ -204,6 +226,117 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+
+        /* Mobile Responsive for Header */
+        @media (max-width: 1200px) {
+            nav ul {
+                gap: 0.3rem;
+            }
+            
+            nav ul li a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-content {
+                display: grid;
+                grid-template-areas: 
+                    "logo mobile actions"
+                    "nav nav nav";
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .header-top {
+                grid-area: logo;
+                margin-bottom: 0;
+            }
+            
+            .logo {
+                font-size: 1.6rem;
+            }
+            
+            .mobile-menu {
+                grid-area: mobile;
+                justify-self: start;
+                display: block;
+            }
+            
+            .header-actions {
+                grid-area: actions;
+                justify-self: end;
+            }
+            
+            nav {
+                grid-area: nav;
+                justify-content: flex-start;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                padding-top: 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                width: 100%;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+            
+            nav ul li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: left;
+            }
+            
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+            
+            .search-bar.active {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-bar.active {
+                position: fixed;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                z-index: 101;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .search-bar.active {
+                width: 95%;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .logo i {
+                font-size: 1.6rem;
+            }
         }
 
         /* Search Results Styles */
@@ -309,88 +442,6 @@
             font-style: italic;
         }
 
-        /* Mobile Responsive for Search */
-        @media (max-width: 992px) {
-            .search-bar.active {
-                width: 200px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                display: grid;
-                grid-template-areas: 
-                    "logo mobile actions"
-                    "nav nav nav";
-                gap: 1rem;
-                align-items: center;
-            }
-            
-            .logo {
-                grid-area: logo;
-            }
-            
-            .mobile-menu {
-                grid-area: mobile;
-                justify-self: start;
-                display: block;
-            }
-            
-            .header-actions {
-                grid-area: actions;
-                justify-self: end;
-            }
-            
-            .nav-menu {
-                grid-area: nav;
-                display: none;
-            }
-            
-            .nav-menu.active {
-                display: block;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .search-bar.active {
-                position: fixed;
-                top: 70px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-                z-index: 101;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .search-bar.active {
-                width: 95%;
-            }
-            
-            nav ul li {
-                margin-left: 1rem;
-            }
-            
-            nav ul li a {
-                font-size: 0.9rem;
-            }
-            
-            .logo {
-                font-size: 1.4rem;
-            }
-            
-            .logo i {
-                font-size: 1.6rem;
-            }
-        }
-
         /* Hero Section - Home Page Cover */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
@@ -405,6 +456,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            margin-top: 120px; /* Added to account for fixed header height */
         }
 
         .hero-content {
@@ -1997,21 +2049,6 @@
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            nav ul {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav ul li {
-                margin: 0.5rem;
-            }
-
             .hero {
                 padding: 10rem 0 6rem;
             }
@@ -2068,16 +2105,32 @@
     </style>
 </head>
 <body>
+    </style>
+</head>
+<body>
     <!-- Header -->
     <header id="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-leaf"></i>
-                    <span>Biodiversity & Society</span>
-                </div>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
+                <div class="header-top">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>Biodiversity & Society</span>
+                    </div>
+                    <button class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="header-actions">
+                        <div class="search-container">
+                            <button class="search-toggle">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <div class="search-bar">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" class="search-input" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <nav class="nav-menu">
                     <ul>
@@ -2093,18 +2146,6 @@
                         <li><a href="#editorial-staff">Our Team</a></li>
                     </ul>
                 </nav>
-                <!-- UPDATED SEARCH BAR -->
-                <div class="header-actions">
-                    <div class="search-container">
-                        <button class="search-toggle">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <div class="search-bar">
-                            <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" placeholder="Search...">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </header>
@@ -2829,7 +2870,7 @@
     <section class="editorial-staff" id="editorial-staff">
         <div class="container">
             <div class="section-title">
-                <h2>Editorial Staff</h2>
+                <h2>Web Development Team</h2>
                 <p>Meet the dedicated team behind this educational resource</p>
             </div>
             <div class="staff-grid">
@@ -2950,7 +2991,7 @@
             navMenu.classList.toggle('active');
         });
 
-        // Search Functionality - Updated
+        // Search Functionality
         const searchToggle = document.querySelector('.search-toggle');
         const searchBar = document.querySelector('.search-bar');
         const searchInput = document.querySelector('.search-input');

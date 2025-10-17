@@ -339,6 +339,265 @@
             }
         }
 
+        /* AI Voice/Video Explanation Feature */
+        .ai-explanation-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-hover);
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .ai-explanation-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .ai-explanation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .ai-explanation-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .ai-explanation-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .ai-explanation-modal.active .ai-explanation-content {
+            transform: translateY(0);
+        }
+
+        .ai-explanation-header {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-explanation-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-ai-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .close-ai-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .ai-explanation-body {
+            padding: 2rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .ai-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .ai-option-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+            background: var(--light-bg);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .ai-option-btn:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .ai-option-btn.active {
+            background: rgba(76, 175, 80, 0.15);
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .ai-option-btn i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .ai-video-container {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .ai-video-container.active {
+            display: block;
+        }
+
+        .ai-video-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+
+        .ai-video-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .ai-voice-container {
+            display: none;
+        }
+
+        .ai-voice-container.active {
+            display: block;
+        }
+
+        .ai-voice-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-voice-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-voice-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .ai-voice-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .ai-voice-text {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+
+        .ai-section-selector {
+            margin-top: 1.5rem;
+        }
+
+        .ai-section-selector label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .ai-section-selector select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            font-size: 1rem;
+        }
+
+        /* Voice Controls */
+        .voice-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .voice-status i {
+            color: var(--primary);
+        }
+
+        .voice-playing {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
         /* Search Results Styles */
         .search-results {
             position: fixed;
@@ -2082,6 +2341,18 @@
             .diagram-container {
                 flex-direction: column;
             }
+            
+            .ai-explanation-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.5rem;
+            }
+            
+            .ai-options {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 576px) {
@@ -2105,9 +2376,84 @@
     </style>
 </head>
 <body>
-    </style>
-</head>
-<body>
+    <!-- AI Voice/Video Explanation Button -->
+    <button class="ai-explanation-btn" id="aiExplanationBtn">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- AI Explanation Modal -->
+    <div class="ai-explanation-modal" id="aiExplanationModal">
+        <div class="ai-explanation-content">
+            <div class="ai-explanation-header">
+                <h3>AI Explanation</h3>
+                <button class="close-ai-modal" id="closeAiModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ai-explanation-body">
+                <div class="ai-options">
+                    <button class="ai-option-btn active" data-option="video">
+                        <i class="fas fa-video"></i> Video Explanation
+                    </button>
+                    <button class="ai-option-btn" data-option="voice">
+                        <i class="fas fa-volume-up"></i> Voice Explanation
+                    </button>
+                </div>
+                
+                <div class="ai-section-selector">
+                    <label for="sectionSelect">Select Section to Explain:</label>
+                    <select id="sectionSelect">
+                        <option value="home">Home - Introduction</option>
+                        <option value="key-facts">Key Facts About Biodiversity</option>
+                        <option value="overview">Biodiversity Overview</option>
+                        <option value="threats">Threats to Biodiversity</option>
+                        <option value="impact">Impact of Biodiversity Loss</option>
+                        <option value="health">Global Health Issues</option>
+                        <option value="technology">Technological Advancements</option>
+                        <option value="sts">STS Connection</option>
+                    </select>
+                </div>
+                
+                <div class="ai-video-container active" id="aiVideoContainer">
+                    <div class="ai-video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <p>Video explanation would play here</p>
+                        <p class="small">(In a real implementation, this would be an embedded video)</p>
+                    </div>
+                    <div class="video-controls" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                        <button class="btn" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-play"></i> Play
+                        </button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="ai-voice-container" id="aiVoiceContainer">
+                    <div class="ai-voice-controls">
+                        <button class="ai-voice-btn" id="playVoiceBtn">
+                            <i class="fas fa-play"></i> Play Explanation
+                        </button>
+                        <button class="ai-voice-btn" id="pauseVoiceBtn" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button class="ai-voice-btn" id="stopVoiceBtn" disabled>
+                            <i class="fas fa-stop"></i> Stop
+                        </button>
+                    </div>
+                    <div class="voice-status" id="voiceStatus" style="display: none;">
+                        <i class="fas fa-volume-up voice-playing"></i>
+                        <span>Voice explanation is playing...</span>
+                    </div>
+                    <div class="ai-voice-text" id="aiVoiceText">
+                        <!-- Voice explanation text will be inserted here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -2983,6 +3329,310 @@
     </footer>
 
     <script>
+        // Check if browser supports Web Speech API
+        const speechSynthesis = window.speechSynthesis;
+        const isSpeechSupported = speechSynthesis && speechSynthesis.getVoices;
+        
+        // AI Explanation Feature
+        const aiExplanationBtn = document.getElementById('aiExplanationBtn');
+        const aiExplanationModal = document.getElementById('aiExplanationModal');
+        const closeAiModal = document.getElementById('closeAiModal');
+        const aiOptionBtns = document.querySelectorAll('.ai-option-btn');
+        const aiVideoContainer = document.getElementById('aiVideoContainer');
+        const aiVoiceContainer = document.getElementById('aiVoiceContainer');
+        const sectionSelect = document.getElementById('sectionSelect');
+        const playVoiceBtn = document.getElementById('playVoiceBtn');
+        const pauseVoiceBtn = document.getElementById('pauseVoiceBtn');
+        const stopVoiceBtn = document.getElementById('stopVoiceBtn');
+        const aiVoiceText = document.getElementById('aiVoiceText');
+        const voiceStatus = document.getElementById('voiceStatus');
+
+        // Web Speech API
+        let currentUtterance = null;
+        let isPlaying = false;
+
+        // Open AI Explanation Modal
+        aiExplanationBtn.addEventListener('click', () => {
+            aiExplanationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close AI Explanation Modal
+        closeAiModal.addEventListener('click', () => {
+            aiExplanationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            stopSpeech();
+        });
+
+        // Close modal when clicking outside
+        aiExplanationModal.addEventListener('click', (e) => {
+            if (e.target === aiExplanationModal) {
+                aiExplanationModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                stopSpeech();
+            }
+        });
+
+        // Switch between video and voice options
+        aiOptionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                aiOptionBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const option = btn.getAttribute('data-option');
+                
+                if (option === 'video') {
+                    aiVideoContainer.classList.add('active');
+                    aiVoiceContainer.classList.remove('active');
+                    stopSpeech();
+                } else if (option === 'voice') {
+                    aiVideoContainer.classList.remove('active');
+                    aiVoiceContainer.classList.add('active');
+                    updateVoiceExplanation();
+                    
+                    // Show warning if speech is not supported
+                    if (!isSpeechSupported) {
+                        showSpeechNotSupportedWarning();
+                    }
+                }
+            });
+        });
+
+        // Update voice explanation when section changes
+        sectionSelect.addEventListener('change', () => {
+            updateVoiceExplanation();
+            stopSpeech();
+        });
+
+        // Voice explanation content
+        const voiceExplanations = {
+            'home': `
+                <p>Welcome to our website on Biodiversity Threats and Healthy Society. This platform explores the critical connections between biodiversity loss and human health, and how science and technology can help address these challenges.</p>
+                <p>Biodiversity loss represents one of the most critical challenges of our time, with profound implications for human health, economic stability, and social well-being. Through this website, we examine how the decline in species and ecosystems affects our health, food security, and quality of life.</p>
+                <p>We also explore the role of science in understanding these threats, technology in monitoring and mitigating them, and society in shaping policies and behaviors that can protect our natural world.</p>
+            `,
+            'key-facts': `
+                <p>Let me share some key facts about biodiversity that highlight its importance for human health and society.</p>
+                <p>Did you know that over 75% of global food crops rely on pollinators? These tiny creatures contribute between 235 and 577 billion US dollars annually to global agricultural output.</p>
+                <p>In medicine, over 50% of modern medicines are derived from natural sources, including antibiotics from fungi and painkillers from plant compounds.</p>
+                <p>Forests, which store 80% of terrestrial biodiversity, absorb approximately 2.6 billion tonnes of carbon dioxide annually, playing a crucial role in climate regulation.</p>
+                <p>Invasive alien species contribute to 60% of species extinctions and cause 423 billion US dollars in global economic damage each year.</p>
+                <p>Healthy ecosystems provide 75% of global freshwater resources, yet since 1970, we've lost 35% of our wetlands.</p>
+                <p>Finally, Indigenous Peoples manage over 38 million square kilometers of land globally, including nearly 40% of all protected areas, demonstrating their crucial role as environmental stewards.</p>
+            `,
+            'overview': `
+                <p>Biodiversity refers to the variety of life on Earth at all levels, from genes to ecosystems. It encompasses the evolutionary, ecological, and cultural processes that sustain life.</p>
+                <p>Biodiversity includes three main levels: genetic diversity, which is the variation of genes within a species; species diversity, which is the variety of species within a habitat or region; and ecosystem diversity, which refers to the variety of ecosystems in a given place.</p>
+                <p>Healthy communities depend on well-functioning ecosystems that provide essential services like clean air, fresh water, medicines, and food security. These ecosystems also help regulate diseases and stabilize our climate.</p>
+                <p>Unfortunately, biodiversity loss is accelerating at an unprecedented rate, with approximately 1 million species at risk of extinction. This threatens the vital services that ecosystems provide and increases public health risks globally.</p>
+            `,
+            'threats': `
+                <p>Biodiversity faces numerous threats, primarily driven by human activities. Let me explain the major challenges.</p>
+                <p>Habitat destruction is a primary threat, with one-third of the planet's land now degraded. Forests, wetlands, and other critical ecosystems are being cleared at alarming rates, making it harder to feed our growing global population.</p>
+                <p>Unsustainable practices like oil drilling, fracking, mining, and factory farming are destroying ecosystems while displacing, contaminating, and killing countless species.</p>
+                <p>Overexploitation through overfishing, illegal wildlife trade, and unsustainable harvesting is pushing many species to the brink of extinction.</p>
+                <p>Climate change, with rising temperatures, ocean acidification, and extreme weather events, is disrupting ecosystems and threatening species that cannot adapt quickly enough.</p>
+                <p>Zoonotic spillover occurs when habitat destruction brings humans and wildlife into closer contact, dramatically increasing our risk of exposure to pathogens that jump from animals to humans.</p>
+                <p>Pollution from plastics, chemicals, and air contaminants is poisoning our land, water, and air, harming both wildlife and human health.</p>
+                <p>According to UN Secretary-General António Guterres, "Humanity has become a weapon of mass extinction. And ultimately, we are committing suicide by proxy."</p>
+            `,
+            'impact': `
+                <p>The loss of biodiversity has profound impacts on human health, economies, and societies.</p>
+                <p>Human health relies directly on ecosystem resources, products, and services. When biodiversity declines, we lose potential sources of new medicines, and ecosystem services may no longer meet societal needs, leading to significant health impacts.</p>
+                <p>The economic consequences are staggering. The global economic impact of biodiversity loss amounts to 10 trillion US dollars annually. This includes healthcare costs from increased disease transmission and agricultural losses from reduced pollination and soil fertility.</p>
+                <p>Socially, changes in ecosystems can affect livelihoods, income, and may even cause or increase political conflict as resources become scarce. Communities that depend directly on natural resources for their survival are particularly vulnerable.</p>
+            `,
+            'health': `
+                <p>Biodiversity loss contributes to several major global health issues.</p>
+                <p>Long COVID often disrupts a person's ability to engage with school, work, or relationships for months at a time. People with long COVID need diagnostic and proper rehabilitation support.</p>
+                <p>Cardiovascular diseases are the leading causes of death globally, accounting for 28% of total deaths in 2021. Most can be prevented by addressing modifiable risk factors such as high blood pressure, obesity, and air pollution - all of which are influenced by environmental factors.</p>
+                <p>Lower respiratory infections, such as pneumonia and bronchitis, affect the lungs and breathing passages. Air pollution and environmental degradation can exacerbate these conditions.</p>
+                <p>HIV/AIDS has become one of the world's most serious health challenges since the first cases were reported in 1981. Approximately 86 million people have become infected with HIV since the start of the epidemic.</p>
+                <p>Over 75% of emerging infectious diseases are zoonotic and often arise in areas where ecosystems have been disrupted by deforestation or land-use change.</p>
+                <p>The destruction of ecosystems accelerates climate change, leading to increased heatwaves, floods, and other climate-related health risks, including heat-stress and malnutrition.</p>
+            `,
+            'technology': `
+                <p>Technology is revolutionizing healthcare and biodiversity conservation in remarkable ways.</p>
+                <p>Wearable health technology provides continuous monitoring, early detection, and personalized treatment, helping reduce healthcare costs while improving outcomes. These devices can track vital signs, physical activity, and even environmental exposures.</p>
+                <p>Telemedicine enables virtual communication between patients and physicians, eliminating the need for patients to travel to clinics while maintaining quality care. This is particularly valuable in remote areas with limited healthcare access.</p>
+                <p>Robotic surgical systems help doctors perform complex operations with more accuracy, flexibility, and control than traditional methods. These systems can reduce recovery times and improve surgical outcomes.</p>
+                <p>mRNA technology holds promise for treating various diseases, including cancer and genetic disorders, building on its success with COVID-19 vaccines. This technology represents a breakthrough in how we approach disease prevention and treatment.</p>
+                <p>In biodiversity conservation, technology like satellite monitoring, DNA barcoding, and AI-powered camera traps are helping scientists track species populations, monitor ecosystem health, and combat illegal wildlife trade.</p>
+            `,
+            'sts': `
+                <p>The STS connection refers to the intersection of Science, Technology, and Society in addressing biodiversity threats.</p>
+                <p>Science provides the evidence base for understanding biodiversity threats and their impacts. Through research and data collection, scientists help us comprehend the complex relationships between ecosystems, species, and human well-being.</p>
+                <p>Technology offers tools for monitoring, mitigation, and conservation solutions. From satellite imagery to genetic sequencing, technological advancements provide new ways to study and protect biodiversity.</p>
+                <p>Society determines the values, policies, and behaviors that shape our relationship with nature. Cultural norms, economic systems, and political decisions all influence how we interact with and protect our natural world.</p>
+                <p>The relationship between biodiversity and human society is complex and bidirectional. While human activities drive biodiversity loss, the resulting ecological degradation threatens human health, food security, and social stability.</p>
+                <p>An integrated approach that considers scientific evidence, technological possibilities, and societal values is essential for effective biodiversity conservation and creating a sustainable future.</p>
+            `
+        };
+
+        // Update voice explanation based on selected section
+        function updateVoiceExplanation() {
+            const selectedSection = sectionSelect.value;
+            aiVoiceText.innerHTML = voiceExplanations[selectedSection] || '<p>Explanation not available for this section.</p>';
+        }
+
+        // Initialize voice explanation
+        updateVoiceExplanation();
+
+        // Voice explanation controls
+        playVoiceBtn.addEventListener('click', () => {
+            if (!isPlaying) {
+                playSpeech();
+            }
+        });
+        
+        pauseVoiceBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                pauseSpeech();
+            }
+        });
+        
+        stopVoiceBtn.addEventListener('click', () => {
+            stopSpeech();
+        });
+
+        // Speech functions
+        function playSpeech() {
+            // Check if speech synthesis is supported
+            if (!isSpeechSupported) {
+                showSpeechNotSupportedWarning();
+                return;
+            }
+            
+            if (speechSynthesis.speaking && !speechSynthesis.paused) {
+                return; // Already speaking
+            }
+            
+            const selectedSection = sectionSelect.value;
+            const text = voiceExplanations[selectedSection] || 'No explanation available for this section.';
+            
+            // Clean HTML tags from text
+            const cleanText = text.replace(/<[^>]*>/g, '');
+            
+            if (speechSynthesis.speaking && speechSynthesis.paused) {
+                // Resume if paused
+                speechSynthesis.resume();
+            } else {
+                // Create new utterance
+                currentUtterance = new SpeechSynthesisUtterance(cleanText);
+                
+                // Configure voice
+                const voices = speechSynthesis.getVoices();
+                // Try to find a natural-sounding voice
+                const preferredVoice = voices.find(voice => 
+                    voice.lang.includes('en') && 
+                    (voice.name.includes('Google') || voice.name.includes('Natural') || voice.name.includes('Samantha'))
+                );
+                
+                if (preferredVoice) {
+                    currentUtterance.voice = preferredVoice;
+                }
+                
+                currentUtterance.rate = 0.9;
+                currentUtterance.pitch = 1;
+                currentUtterance.volume = 1;
+                
+                // Event listeners for the utterance
+                currentUtterance.onstart = () => {
+                    isPlaying = true;
+                    playVoiceBtn.disabled = true;
+                    pauseVoiceBtn.disabled = false;
+                    stopVoiceBtn.disabled = false;
+                    voiceStatus.style.display = 'flex';
+                    aiVoiceText.classList.add('voice-playing');
+                };
+                
+                currentUtterance.onend = () => {
+                    isPlaying = false;
+                    playVoiceBtn.disabled = false;
+                    pauseVoiceBtn.disabled = true;
+                    stopVoiceBtn.disabled = true;
+                    voiceStatus.style.display = 'none';
+                    aiVoiceText.classList.remove('voice-playing');
+                };
+                
+                currentUtterance.onerror = (event) => {
+                    console.error('Speech synthesis error:', event);
+                    isPlaying = false;
+                    playVoiceBtn.disabled = false;
+                    pauseVoiceBtn.disabled = true;
+                    stopVoiceBtn.disabled = true;
+                    voiceStatus.style.display = 'none';
+                    aiVoiceText.classList.remove('voice-playing');
+                    
+                    // Show user-friendly error message
+                    if (event.error === 'not-allowed') {
+                        alert('Voice explanation is not allowed in this browser. Please check your browser permissions.');
+                    } else {
+                        alert('Sorry, there was an error with the voice explanation. Please try again or use the video explanation instead.');
+                    }
+                };
+                
+                // Speak the text
+                speechSynthesis.speak(currentUtterance);
+            }
+        }
+
+        function pauseSpeech() {
+            if (speechSynthesis.speaking && !speechSynthesis.paused) {
+                speechSynthesis.pause();
+                isPlaying = false;
+                playVoiceBtn.disabled = false;
+                pauseVoiceBtn.disabled = true;
+                voiceStatus.style.display = 'none';
+                aiVoiceText.classList.remove('voice-playing');
+            }
+        }
+
+        function stopSpeech() {
+            speechSynthesis.cancel();
+            isPlaying = false;
+            playVoiceBtn.disabled = false;
+            pauseVoiceBtn.disabled = true;
+            stopVoiceBtn.disabled = true;
+            voiceStatus.style.display = 'none';
+            aiVoiceText.classList.remove('voice-playing');
+        }
+
+        // Show warning if speech is not supported
+        function showSpeechNotSupportedWarning() {
+            const warningDiv = document.createElement('div');
+            warningDiv.style.cssText = `
+                background-color: #ffebee;
+                border: 1px solid #f44336;
+                border-radius: 8px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                color: #c62828;
+                font-weight: 500;
+            `;
+            warningDiv.innerHTML = `
+                <i class="fas fa-exclamation-triangle" style="margin-right: 0.5rem;"></i>
+                Voice explanation is not supported in your browser. Please try using Chrome, Edge, or Safari for this feature.
+            `;
+            
+            // Insert warning at the top of the voice container
+            aiVoiceContainer.insertBefore(warningDiv, aiVoiceContainer.firstChild);
+            
+            // Disable voice controls
+            playVoiceBtn.disabled = true;
+            pauseVoiceBtn.disabled = true;
+            stopVoiceBtn.disabled = true;
+        }
+
+        // Initialize voices when they are loaded
+        if (isSpeechSupported) {
+            speechSynthesis.onvoiceschanged = function() {
+                // Voices are loaded, we can use them now
+            };
+        }
+
         // Mobile Menu Toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navMenu = document.querySelector('.nav-menu');

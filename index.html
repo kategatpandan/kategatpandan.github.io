@@ -125,6 +125,7 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            padding-bottom: 0.5rem;
         }
 
         nav ul::-webkit-scrollbar {
@@ -368,11 +369,9 @@
                 width: 90%;
                 z-index: 101;
             }
-        }
-
-        @media (max-width: 576px) {
-            .search-bar.active {
-                width: 95%;
+            
+            .header-top {
+                flex-wrap: wrap;
             }
             
             .logo {
@@ -382,10 +381,34 @@
             .logo i {
                 font-size: 1.6rem;
             }
+        }
+
+        @media (max-width: 576px) {
+            .search-bar.active {
+                width: 95%;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .logo i {
+                font-size: 1.4rem;
+            }
             
             nav ul li a {
                 padding: 0.5rem 0.6rem;
                 font-size: 0.75rem;
+            }
+            
+            .header-actions {
+                gap: 0.5rem;
+            }
+            
+            .search-toggle {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
             }
         }
 
@@ -1813,18 +1836,6 @@
             color: var(--secondary);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .info-step {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .step-number {
-                margin-bottom: 0.5rem;
-            }
-        }
-
         /* Visual Aid: Threat Timeline */
         .threat-timeline {
             margin: 4rem 0;
@@ -2071,17 +2082,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .overview-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .overview-item {
-                padding: 1rem;
             }
         }
 
@@ -2870,34 +2870,6 @@
             border: none;
         }
 
-        /* Responsive adjustments for the diagram */
-        @media (max-width: 768px) {
-            .diagram-container {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            .diagram-connections {
-                display: none;
-            }
-            
-            .diagram-element {
-                padding: 2rem 1.5rem;
-            }
-            
-            .calculator-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .species-modal-body {
-                grid-template-columns: 1fr;
-            }
-            
-            .species-modal-image {
-                height: 200px;
-            }
-        }
-
         /* CTA Section */
         .cta {
             background: var(--gradient-primary);
@@ -3473,68 +3445,6 @@
             z-index: 9999;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .quiz-intro {
-                grid-template-columns: 1fr;
-                padding: 2rem;
-            }
-            
-            .quiz-header {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-            
-            .quiz-progress {
-                width: 100%;
-            }
-            
-            .results-actions {
-                flex-direction: column;
-            }
-            
-            .save-actions {
-                flex-direction: column;
-            }
-            
-            .ecosystem-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .ecosystem-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .species-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .stats-counter {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .question-container,
-            .quiz-feedback,
-            .quiz-results {
-                padding: 1.5rem;
-            }
-            
-            .score-circle {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .score-percentage {
-                font-size: 2rem;
-            }
-        }
-
         /* Editorial Staff Section */
         .editorial-staff {
             padding: 6rem 0;
@@ -4010,7 +3920,7 @@
             z-index: 0;
         }
 
-        /* Responsive Design */
+        /* Mobile Responsive Design Improvements */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 3rem;
@@ -4045,6 +3955,64 @@
             .timeline-item:nth-child(even)::after {
                 left: 21px;
             }
+            
+            .quiz-intro {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-explanation-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.5rem;
+            }
+            
+            .ai-options {
+                flex-direction: column;
+            }
+            
+            .back-to-top {
+                left: 20px;
+                bottom: 20px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .diagram-container {
+                flex-direction: column;
+            }
+            
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .species-modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .species-modal-image {
+                height: 200px;
+            }
+            
+            .ecosystem-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ecosystem-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .species-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .stats-counter {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         @media (max-width: 768px) {
@@ -4078,27 +4046,39 @@
                 order: -1;
             }
 
-            .diagram-container {
+            .quiz-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .quiz-progress {
+                width: 100%;
+            }
+            
+            .results-actions {
                 flex-direction: column;
             }
             
-            .ai-explanation-btn {
-                width: 60px;
-                height: 60px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 1.5rem;
-            }
-            
-            .ai-options {
+            .save-actions {
                 flex-direction: column;
             }
-
-            .back-to-top {
-                left: 20px;
-                bottom: 20px;
-                width: 45px;
-                height: 45px;
+            
+            .overview-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .overview-item {
+                padding: 1rem;
+            }
+            
+            .info-step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .step-number {
+                margin-bottom: 0.5rem;
             }
         }
 
@@ -4118,6 +4098,94 @@
             .case-study,
             .solutions-preview {
                 padding: 2rem;
+            }
+            
+            .question-container,
+            .quiz-feedback,
+            .quiz-results {
+                padding: 1.5rem;
+            }
+            
+            .score-circle {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .score-percentage {
+                font-size: 2rem;
+            }
+            
+            .ai-explanation-body {
+                padding: 1.5rem;
+            }
+            
+            .ai-voice-controls {
+                flex-direction: column;
+            }
+            
+            .ai-voice-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn:hover {
+                transform: none;
+            }
+            
+            .card-hover:hover {
+                transform: none;
+            }
+            
+            .fact-card:hover {
+                transform: none;
+            }
+            
+            .threat-card:hover {
+                transform: none;
+            }
+            
+            .impact-card:hover {
+                transform: none;
+            }
+            
+            .tech-card:hover {
+                transform: none;
+            }
+            
+            .video-card:hover {
+                transform: none;
+            }
+            
+            .option:hover {
+                background-color: var(--light-bg);
+                border-color: #e0e0e0;
+            }
+            
+            /* Increase touch target sizes */
+            .btn {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .option {
+                min-height: 60px;
+            }
+            
+            nav ul li a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .search-toggle {
+                min-width: 44px;
+                min-height: 44px;
             }
         }
     </style>

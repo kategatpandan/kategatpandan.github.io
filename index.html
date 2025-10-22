@@ -412,6 +412,61 @@
             }
         }
 
+        /* Mobile Navigation Styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 99;
+                padding: 1rem 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                overflow-x: visible;
+                padding-bottom: 0;
+            }
+            
+            nav ul li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            
+            nav ul li a {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                text-align: left;
+                border-radius: 0;
+                display: block;
+                width: 100%;
+            }
+            
+            nav ul li a:hover,
+            nav ul li a.active {
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+        }
+
         /* AI Voice/Video Explanation Feature */
         .ai-explanation-btn {
             position: fixed;
@@ -4385,7 +4440,7 @@
                         <i class="fas fa-leaf"></i>
                         <span>Biodiversity & Society</span>
                     </div>
-                    <button class="mobile-menu">
+                    <button class="mobile-menu" id="mobileMenu">
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="header-actions">
@@ -4400,7 +4455,7 @@
                         </div>
                     </div>
                 </div>
-                <nav class="nav-menu">
+                <nav class="nav-menu" id="navMenu">
                     <ul>
                         <li><a href="#home" class="active">Home</a></li>
                         <li><a href="#key-facts">Key Facts</a></li>
@@ -5478,9 +5533,25 @@
         // Back to Top Button
         const backToTopBtn = document.getElementById('backToTop');
 
+        // Mobile Navigation
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+
         // Web Speech API
         let currentUtterance = null;
         let isPlaying = false;
+
+        // Mobile Menu Toggle
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
 
         // Open AI Explanation Modal
         aiExplanationBtn.addEventListener('click', () => {
@@ -5859,14 +5930,6 @@
                 top: 0,
                 behavior: 'smooth'
             });
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navMenu = document.querySelector('.nav-menu');
-
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
         });
 
         // Search Functionality

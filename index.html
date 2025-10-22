@@ -5,28 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biodiversity Threats & Healthy Society | Science, Technology & Society</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* CSS Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         :root {
-            --primary: #2e7d32;
-            --primary-dark: #1b5e20;
-            --primary-light: #4caf50;
-            --secondary: #ff9800;
-            --accent: #2196f3;
-            --health: #e91e63;
-            --text: #333;
-            --text-light: #666;
-            --light-bg: #f9f9f9;
+            --primary: #1a5d1a;
+            --primary-dark: #0d3d0d;
+            --primary-light: #2e8b2e;
+            --secondary: #ff6b35;
+            --accent: #3498db;
+            --health: #e74c3c;
+            --text: #2c3e50;
+            --text-light: #5d6d7e;
+            --light-bg: #f8f9fa;
             --white: #ffffff;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #e25822 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #2980b9 100%);
+            --gradient-health: linear-gradient(135deg, var(--health) 0%, #c0392b 100%);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
 
         body {
@@ -34,12 +41,14 @@
             line-height: 1.6;
             background-color: var(--light-bg);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         p {
@@ -48,7 +57,7 @@
 
         /* Header and Navigation */
         header {
-            background-color: rgba(46, 125, 50, 0.95);
+            background-color: rgba(26, 93, 26, 0.95);
             color: var(--white);
             padding: 1.5rem 0 0;
             position: fixed;
@@ -56,11 +65,12 @@
             width: 100%;
             z-index: 100;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
 
         .scrolled {
-            background-color: rgba(46, 125, 50, 0.98);
+            background-color: rgba(26, 93, 26, 0.98);
             padding: 0.7rem 0 0;
         }
 
@@ -92,6 +102,11 @@
         .logo i {
             margin-right: 10px;
             font-size: 2.2rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover i {
+            transform: rotate(15deg) scale(1.1);
         }
 
         nav {
@@ -105,31 +120,57 @@
         nav ul {
             display: flex;
             list-style: none;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 0.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        nav ul::-webkit-scrollbar {
+            display: none;
         }
 
         nav ul li {
             position: relative;
+            flex-shrink: 0;
         }
 
         nav ul li a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.7rem 1.2rem;
-            font-size: 1rem;
+            transition: var(--transition);
+            padding: 0.5rem 0.8rem;
+            font-size: 0.85rem;
             border-radius: 4px;
             display: block;
             white-space: nowrap;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        nav ul li a:hover::before {
+            left: 100%;
         }
 
         nav ul li a:hover,
         nav ul li a.active {
             color: var(--secondary);
             background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         nav ul li a.active::after {
@@ -149,6 +190,12 @@
             color: var(--white);
             background: none;
             border: none;
+            transition: var(--transition);
+        }
+
+        .mobile-menu:hover {
+            color: var(--secondary);
+            transform: scale(1.1);
         }
 
         /* Search Bar Styles */
@@ -166,7 +213,7 @@
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 50%;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -176,6 +223,7 @@
 
         .search-toggle:hover {
             background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
         }
 
         .search-bar {
@@ -192,7 +240,7 @@
             width: 0;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             backdrop-filter: blur(5px);
         }
 
@@ -235,8 +283,8 @@
             }
             
             nav ul li a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+                padding: 0.5rem 0.7rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -278,31 +326,28 @@
             }
             
             .nav-menu {
-                display: none;
-                width: 100%;
-            }
-            
-            .nav-menu.active {
                 display: block;
+                width: 100%;
             }
             
             nav ul {
-                flex-direction: column;
+                flex-direction: row;
                 width: 100%;
-                gap: 0;
+                gap: 0.3rem;
+                overflow-x: auto;
             }
             
             nav ul li {
                 margin: 0;
-                width: 100%;
+                width: auto;
             }
             
             nav ul li a {
-                padding: 0.8rem 1rem;
-                font-size: 1rem;
-                border-radius: 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                text-align: left;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+                border-radius: 4px;
+                border-bottom: none;
+                text-align: center;
             }
             
             nav ul li:last-child a {
@@ -337,6 +382,11 @@
             .logo i {
                 font-size: 1.6rem;
             }
+            
+            nav ul li a {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.75rem;
+            }
         }
 
         /* AI Voice/Video Explanation Feature */
@@ -346,7 +396,7 @@
             right: 30px;
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: var(--gradient-accent);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -356,13 +406,21 @@
             box-shadow: var(--shadow-hover);
             cursor: pointer;
             z-index: 99;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: none;
+            animation: pulse 2s infinite;
         }
 
         .ai-explanation-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .ai-explanation-modal {
@@ -378,7 +436,7 @@
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             backdrop-filter: blur(5px);
         }
 
@@ -389,7 +447,7 @@
 
         .ai-explanation-content {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             width: 90%;
             max-width: 800px;
             max-height: 90vh;
@@ -404,7 +462,7 @@
         }
 
         .ai-explanation-header {
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: var(--gradient-primary);
             color: white;
             padding: 1.5rem;
             display: flex;
@@ -434,6 +492,7 @@
 
         .close-ai-modal:hover {
             background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
         }
 
         .ai-explanation-body {
@@ -457,17 +516,18 @@
             border: 2px solid transparent;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             text-align: center;
             font-weight: 600;
         }
 
         .ai-option-btn:hover {
-            background: rgba(76, 175, 80, 0.1);
+            background: rgba(26, 93, 26, 0.1);
+            transform: translateY(-3px);
         }
 
         .ai-option-btn.active {
-            background: rgba(76, 175, 80, 0.15);
+            background: rgba(26, 93, 26, 0.15);
             border-color: var(--primary);
             color: var(--primary-dark);
         }
@@ -486,6 +546,7 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .ai-voice-btn {
@@ -495,7 +556,7 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -504,11 +565,13 @@
 
         .ai-voice-btn:hover {
             background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
         .ai-voice-btn:disabled {
             background: #cccccc;
             cursor: not-allowed;
+            transform: none;
         }
 
         .ai-voice-text {
@@ -518,6 +581,7 @@
             max-height: 200px;
             overflow-y: auto;
             line-height: 1.6;
+            border-left: 4px solid var(--primary);
         }
 
         .ai-section-selector {
@@ -538,6 +602,13 @@
             border-radius: 6px;
             background: white;
             font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .ai-section-selector select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 93, 26, 0.2);
         }
 
         /* Voice Controls */
@@ -547,7 +618,7 @@
             gap: 0.5rem;
             margin-top: 1rem;
             padding: 0.5rem;
-            background: rgba(76, 175, 80, 0.1);
+            background: rgba(26, 93, 26, 0.1);
             border-radius: 4px;
             font-size: 0.9rem;
         }
@@ -584,7 +655,7 @@
 
         .search-results-content {
             background: var(--white);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 2rem;
             max-width: 600px;
             width: 90%;
@@ -611,7 +682,7 @@
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             background: var(--light-bg);
         }
 
@@ -654,11 +725,11 @@
             font-weight: 600;
             display: block;
             margin: 0 auto;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .close-results:hover {
-            background: #e68900;
+            background: #e25822;
             transform: translateY(-2px);
         }
 
@@ -683,18 +754,35 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            margin-top: 120px; /* Added to account for fixed header height */
+            margin-top: 120px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(26, 93, 26, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(52, 152, 219, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.2) 0%, transparent 50%);
+            z-index: 0;
         }
 
         .hero-content {
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
         }
 
         .hero .tagline {
@@ -702,6 +790,7 @@
             margin-bottom: 2rem;
             opacity: 0.9;
             font-weight: 300;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
         .hero p {
@@ -709,6 +798,18 @@
             max-width: 700px;
             margin: 0 auto 2.5rem;
             opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn {
@@ -719,16 +820,33 @@
             border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
             font-size: 1rem;
             letter-spacing: 0.5px;
             margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            background-color: #e68900;
+            background-color: #e25822;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
@@ -742,15 +860,57 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
+        /* Interactive Stats Counter */
+        .stats-counter {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
         /* Key Facts Section */
         .key-facts {
             padding: 6rem 0;
             background-color: var(--white);
+            position: relative;
+        }
+
+        .key-facts::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%232e8b2e" opacity="0.03"><circle cx="50" cy="50" r="2"/></svg>') repeat;
+            z-index: 0;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title h2 {
@@ -782,15 +942,17 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .fact-card {
             background-color: var(--light-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 2.5rem 2rem;
             text-align: center;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -806,7 +968,7 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: var(--gradient-primary);
         }
 
         .fact-card:hover {
@@ -818,18 +980,18 @@
             font-size: 3.5rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
-            background: rgba(76, 175, 80, 0.1);
+            background: rgba(46, 139, 46, 0.1);
             width: 90px;
             height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .fact-card:hover i {
-            background: rgba(76, 175, 80, 0.2);
+            background: rgba(46, 139, 46, 0.2);
             transform: scale(1.1);
         }
 
@@ -844,10 +1006,99 @@
             line-height: 1.7;
         }
 
+        /* Interactive Ecosystem Visualization */
+        .ecosystem-visualization {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .visualization-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .ecosystem-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .ecosystem-canvas-container {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: linear-gradient(to bottom, #87CEEB, #1E90FF);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #ecosystemCanvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .ecosystem-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .ecosystem-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ecosystem-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .ecosystem-info {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
         /* Overview Section */
         .overview {
             padding: 6rem 0;
             background-color: var(--light-bg);
+            position: relative;
+        }
+
+        .overview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%233498db" opacity="0.03"><polygon points="50,0 100,50 50,100 0,50"/></svg>') repeat;
+            z-index: 0;
         }
 
         .overview-content {
@@ -855,6 +1106,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .overview-text h3 {
@@ -864,10 +1117,28 @@
         }
 
         .overview-image {
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .overview-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .overview-image:hover::before {
+            opacity: 0.1;
         }
 
         .overview-image:hover {
@@ -890,9 +1161,11 @@
             margin: 4rem 0;
             padding: 2.5rem;
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             border-left: 5px solid var(--primary);
+            position: relative;
+            z-index: 1;
         }
 
         .pyramid-title {
@@ -917,7 +1190,7 @@
             padding: 1.8rem;
             border-radius: 10px;
             background-color: var(--light-bg);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
@@ -930,7 +1203,7 @@
             font-size: 2.2rem;
             margin-right: 1.8rem;
             color: var(--primary);
-            background: rgba(76, 175, 80, 0.1);
+            background: rgba(46, 139, 46, 0.1);
             width: 70px;
             height: 70px;
             display: flex;
@@ -955,10 +1228,195 @@
             line-height: 1.6;
         }
 
+        /* Interactive Species Explorer */
+        .species-explorer {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .explorer-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .species-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .species-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .species-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .species-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .species-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 1rem;
+        }
+        
+        .species-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .species-status {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        .species-details {
+            padding: 1.5rem;
+        }
+        
+        .species-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .species-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .species-modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .species-modal.active .species-modal-content {
+            transform: translateY(0);
+        }
+        
+        .species-modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .species-modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .close-species-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .close-species-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .species-modal-body {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .species-modal-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .species-modal-info h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+        
+        .species-fact {
+            background-color: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
         /* Threats to Biodiversity Section */
         .threats {
             padding: 6rem 0;
             background-color: var(--white);
+            position: relative;
+        }
+
+        .threats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e74c3c" opacity="0.03"><path d="M50,0 L100,50 L50,100 L0,50 Z"/></svg>') repeat;
+            z-index: 0;
         }
 
         .threats-content {
@@ -967,6 +1425,8 @@
             gap: 4rem;
             align-items: center;
             margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .threats-text h3 {
@@ -976,10 +1436,28 @@
         }
 
         .threats-image {
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .threats-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .threats-image:hover::before {
+            opacity: 0.1;
         }
 
         .threats-image:hover {
@@ -1002,15 +1480,17 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
             margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .threat-card {
             background-color: var(--light-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 2.5rem 2rem;
             text-align: center;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
             border-top: 5px solid #e74c3c;
@@ -1036,7 +1516,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .threat-card:hover .threat-icon {
@@ -1055,14 +1535,306 @@
             line-height: 1.7;
         }
 
+        /* Interactive Impact Calculator */
+        .impact-calculator {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .calculator-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .calculator-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .calculator-input-group label {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .calculator-input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .calculator-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 93, 26, 0.2);
+        }
+        
+        .calculator-results {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .result-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .calculate-btn {
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .calculate-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Calculator Info Button */
+        .calculator-info-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .calculator-info-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Calculator Info Modal */
+        .calculator-info-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .calculator-info-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .calculator-info-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .calculator-info-modal.active .calculator-info-content {
+            transform: translateY(0);
+        }
+
+        .calculator-info-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calculator-info-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-calculator-info {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .close-calculator-info:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .calculator-info-body {
+            padding: 2rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content h5 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+            font-size: 1rem;
+        }
+
+        .step-content p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .step-content ul {
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+        }
+
+        .step-content li {
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .step-content strong {
+            color: var(--primary-dark);
+        }
+
+        .info-note {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(255, 107, 53, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .info-note p {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .info-note strong {
+            color: var(--secondary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .info-step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .step-number {
+                margin-bottom: 0.5rem;
+            }
+        }
+
         /* Visual Aid: Threat Timeline */
         .threat-timeline {
             margin: 4rem 0;
             padding: 2.5rem;
             background-color: var(--light-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             border-left: 5px solid var(--primary);
+            position: relative;
+            z-index: 1;
         }
 
         .timeline-title {
@@ -1129,6 +1901,12 @@
             background-color: var(--white);
             border-radius: 8px;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
 
         .timeline-content h4 {
@@ -1146,7 +1924,7 @@
             padding: 0.3rem 0.8rem;
             border: 1px solid var(--primary);
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .timeline-link:hover {
@@ -1185,11 +1963,11 @@
         /* Timeline Overview Styles */
         .timeline-overview {
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .overview-content {
@@ -1204,7 +1982,7 @@
             padding: 1.5rem 1rem;
             background-color: var(--light-bg);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border-left: 4px solid var(--primary);
         }
 
@@ -1239,7 +2017,7 @@
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-size: 1rem;
         }
 
@@ -1273,13 +2051,13 @@
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-size: 1rem;
             margin-top: 2rem;
         }
 
         .collapse-timeline-btn:hover {
-            background-color: #e68900;
+            background-color: #e25822;
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
@@ -1309,10 +2087,12 @@
 
         .case-study {
             background-color: var(--light-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 3rem;
             margin-bottom: 4rem;
             box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
         }
 
         .case-study-content {
@@ -1323,15 +2103,38 @@
         }
 
         .case-study-image {
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .case-study-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .case-study-image:hover::before {
+            opacity: 0.1;
         }
 
         .case-study-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.5s;
+        }
+
+        .case-study-image:hover img {
+            transform: scale(1.05);
         }
 
         .case-study-text h3 {
@@ -1342,9 +2145,11 @@
 
         .solutions-preview {
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 3rem;
             box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
         }
 
         .solutions-preview h3 {
@@ -1361,6 +2166,15 @@
         .solutions-preview li {
             margin-bottom: 1rem;
             line-height: 1.6;
+            position: relative;
+        }
+
+        .solutions-preview li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -1.5rem;
         }
 
         .cta-mini {
@@ -1369,6 +2183,7 @@
             padding: 2rem;
             text-align: center;
             margin-top: 2rem;
+            border-left: 4px solid var(--secondary);
         }
 
         .cta-mini p {
@@ -1383,6 +2198,9 @@
             margin: 2rem 0;
             font-style: italic;
             color: var(--text-light);
+            background: rgba(255, 107, 53, 0.05);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
         }
 
         cite {
@@ -1397,20 +2215,52 @@
         .impact {
             padding: 6rem 0;
             background-color: var(--light-bg);
+            position: relative;
+        }
+
+        .impact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23ff6b35" opacity="0.03"><circle cx="50" cy="50" r="5"/></svg>') repeat;
+            z-index: 0;
         }
 
         .impact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .impact-card {
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .impact-card:hover::before {
+            opacity: 0.05;
         }
 
         .impact-card:hover {
@@ -1421,6 +2271,17 @@
         .impact-image {
             height: 200px;
             overflow: hidden;
+            position: relative;
+        }
+
+        .impact-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.1));
         }
 
         .impact-image img {
@@ -1453,20 +2314,34 @@
         .health-issues {
             padding: 6rem 0;
             background-color: var(--white);
+            position: relative;
+        }
+
+        .health-issues::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e74c3c" opacity="0.03"><path d="M50,10 L60,40 L90,40 L65,60 L75,90 L50,70 L25,90 L35,60 L10,40 L40,40 Z"/></svg>') repeat;
+            z-index: 0;
         }
 
         .health-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .health-card {
             background-color: var(--light-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 2rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border-left: 5px solid var(--health);
             height: 100%;
         }
@@ -1486,7 +2361,7 @@
 
         .health-card h3 i {
             margin-right: 10px;
-            background: rgba(233, 30, 99, 0.1);
+            background: rgba(231, 76, 60, 0.1);
             width: 40px;
             height: 40px;
             display: flex;
@@ -1504,20 +2379,52 @@
         .technology {
             padding: 6rem 0;
             background-color: var(--light-bg);
+            position: relative;
+        }
+
+        .technology::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%233498db" opacity="0.03"><rect x="25" y="25" width="50" height="50"/></svg>') repeat;
+            z-index: 0;
         }
 
         .tech-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .tech-card {
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .tech-card:hover::before {
+            opacity: 0.05;
         }
 
         .tech-card:hover {
@@ -1528,6 +2435,17 @@
         .tech-image {
             height: 200px;
             overflow: hidden;
+            position: relative;
+        }
+
+        .tech-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.1));
         }
 
         .tech-image img {
@@ -1560,10 +2478,22 @@
         .sts-connection {
             padding: 6rem 0;
             background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
-                        url('sts-background.jpg');
+                        url('sts-connection-bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            position: relative;
+        }
+
+        .sts-connection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%231a5d1a" opacity="0.03"><path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z"/></svg>') repeat;
+            z-index: 0;
         }
 
         .sts-content {
@@ -1571,6 +2501,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .sts-text h3 {
@@ -1580,10 +2512,28 @@
         }
 
         .sts-image {
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .sts-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .sts-image:hover::before {
+            opacity: 0.1;
         }
 
         .sts-image:hover {
@@ -1601,173 +2551,388 @@
             transform: scale(1.05);
         }
 
-/* Visual Aid: STS Interconnection Diagram */
-.sts-diagram {
-    margin: 4rem 0;
-    padding: 2.5rem;
-    background-color: var(--white);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    border-left: 5px solid var(--primary);
-}
+        /* Visual Aid: STS Interconnection Diagram */
+        .sts-diagram {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+            position: relative;
+            z-index: 1;
+        }
 
-.diagram-title {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--primary);
-    font-size: 1.8rem;
-}
+        .diagram-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
 
-.diagram-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 2rem;
-    position: relative;
-    z-index: 1;
-}
+        .diagram-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
 
-.diagram-element {
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-    border-radius: 12px;
-    background-color: var(--light-bg);
-    transition: all 0.3s ease;
-    flex: 1;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-}
+        .diagram-element {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            background-color: var(--light-bg);
+            transition: var(--transition);
+            flex: 1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
 
-.diagram-element:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
-}
+        .diagram-element:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
 
-.element-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-}
+        .element-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
 
-.diagram-element:nth-child(1) .element-icon {
-    background-color: rgba(33, 150, 243, 0.1);
-    color: var(--accent);
-}
+        .diagram-element:nth-child(1) .element-icon {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent);
+        }
 
-.diagram-element:nth-child(2) .element-icon {
-    background-color: rgba(76, 175, 80, 0.1);
-    color: var(--primary);
-}
+        .diagram-element:nth-child(2) .element-icon {
+            background-color: rgba(26, 93, 26, 0.1);
+            color: var(--primary);
+        }
 
-.diagram-element:nth-child(3) .element-icon {
-    background-color: rgba(255, 152, 0, 0.1);
-    color: var(--secondary);
-}
+        .diagram-element:nth-child(3) .element-icon {
+            background-color: rgba(255, 107, 53, 0.1);
+            color: var(--secondary);
+        }
 
-.diagram-element h4 {
-    margin-bottom: 1rem;
-    color: var(--primary-dark);
-    font-size: 1.3rem;
-}
+        .diagram-element h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
 
-.diagram-element p {
-    color: var(--text-light);
-    line-height: 1.6;
-    margin-bottom: 0;
-}
+        .diagram-element p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
 
-.diagram-connections {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15%;
-    z-index: 0;
-}
+        .diagram-connections {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15%;
+            z-index: 0;
+        }
 
-.connection-line {
-    flex: 1;
-    height: 2px;
-    background: linear-gradient(to right, var(--accent), var(--primary), var(--secondary));
-    margin: 0 10px;
-    position: relative;
-}
+        .connection-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--primary), var(--secondary));
+            margin: 0 10px;
+            position: relative;
+        }
 
-.connection-line::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    right: -5px;
-    width: 10px;
-    height: 10px;
-    background-color: var(--secondary);
-    border-radius: 50%;
-}
+        .connection-line::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: -5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
 
-/* Responsive adjustments for the diagram */
-@media (max-width: 768px) {
-    .diagram-container {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .diagram-connections {
-        display: none;
-    }
-    
-    .diagram-element {
-        padding: 2rem 1.5rem;
-    }
-}
+        /* Video Resources Section */
+        .video-resources {
+            padding: 6rem 0;
+            background-color: var(--light-bg);
+            position: relative;
+        }
 
-/* CTA Section */
-.cta {
-    background: var(--primary);
-    color: var(--white);
-    text-align: center;
-    padding: 6rem 0;
-    position: relative;
-    overflow: hidden;
-}
+        .video-resources::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e74c3c" opacity="0.03"><path d="M50,10 L60,30 L80,30 L65,45 L75,70 L50,55 L25,70 L35,45 L20,30 L40,30 Z"/></svg>') repeat;
+            z-index: 0;
+        }
 
-.cta::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    z-index: 1;
-}
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
 
-.cta .container {
-    position: relative;
-    z-index: 2;
-}
+        .video-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
 
-.cta h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
 
-.cta p {
-    max-width: 700px;
-    margin: 0 auto 2.5rem;
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .video-card:hover .video-play-btn {
+            background-color: var(--primary);
+            color: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-content {
+            padding: 1.5rem;
+        }
+
+        .video-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .video-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .video-link:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Video Modal */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .video-modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .video-modal.active .video-modal-content {
+            transform: translateY(0);
+        }
+
+        .video-modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-video-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .close-video-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .video-modal-body {
+            padding: 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-modal-body iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive adjustments for the diagram */
+        @media (max-width: 768px) {
+            .diagram-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .diagram-connections {
+                display: none;
+            }
+            
+            .diagram-element {
+                padding: 2rem 1.5rem;
+            }
+            
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .species-modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .species-modal-image {
+                height: 200px;
+            }
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23ffffff" opacity="0.05"><circle cx="50" cy="50" r="2"/></svg>') repeat;
+            z-index: 1;
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
             font-size: 1.2rem;
             opacity: 0.95;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -1780,7 +2945,7 @@
             font-weight: 600;
             padding: 1rem 2.5rem;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .cta .btn:hover {
@@ -1794,15 +2959,29 @@
         .quiz-section {
             padding: 6rem 0;
             background-color: var(--light-bg);
+            position: relative;
+        }
+
+        .quiz-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%239C27B0" opacity="0.03"><path d="M50,10 L60,30 L80,30 L65,45 L75,70 L50,55 L25,70 L35,45 L20,30 L40,30 Z"/></svg>') repeat;
+            z-index: 0;
         }
 
         .quiz-container {
             max-width: 800px;
             margin: 0 auto;
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
 
         .quiz-intro {
@@ -1814,15 +2993,38 @@
         }
 
         .quiz-image {
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .quiz-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .quiz-image:hover::before {
+            opacity: 0.1;
         }
 
         .quiz-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.5s;
+        }
+
+        .quiz-image:hover img {
+            transform: scale(1.05);
         }
 
         .quiz-info h3 {
@@ -1910,17 +3112,17 @@
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-weight: 500;
         }
 
         .option:hover {
-            background-color: rgba(76, 175, 80, 0.1);
+            background-color: rgba(26, 93, 26, 0.1);
             border-color: var(--primary-light);
         }
 
         .option.correct {
-            background-color: rgba(76, 175, 80, 0.15);
+            background-color: rgba(26, 93, 26, 0.15);
             border-color: var(--primary);
             color: var(--primary-dark);
         }
@@ -2017,28 +3219,28 @@
         .score-feedback {
             margin: 2rem 0;
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             text-align: center;
             transition: all 0.5s ease;
         }
 
         .score-feedback.expert {
-            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.1));
+            background: linear-gradient(135deg, rgba(26, 93, 26, 0.1), rgba(46, 139, 46, 0.1));
             border: 2px solid var(--primary);
         }
 
         .score-feedback.advanced {
-            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(66, 133, 244, 0.1));
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
             border: 2px solid var(--accent);
         }
 
         .score-feedback.intermediate {
-            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 193, 7, 0.1));
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(226, 88, 34, 0.1));
             border: 2px solid var(--secondary);
         }
 
         .score-feedback.beginner {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(236, 64, 122, 0.1));
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
             border: 2px solid var(--health);
         }
 
@@ -2139,7 +3341,7 @@
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             backdrop-filter: blur(5px);
         }
 
@@ -2150,7 +3352,7 @@
 
         .save-results-content {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             width: 90%;
             max-width: 800px;
             max-height: 90vh;
@@ -2165,7 +3367,7 @@
         }
 
         .save-results-header {
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: var(--gradient-primary);
             color: white;
             padding: 1.5rem;
             display: flex;
@@ -2195,6 +3397,7 @@
 
         .close-save-modal:hover {
             background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
         }
 
         .save-results-body {
@@ -2205,7 +3408,7 @@
 
         .saveable-results {
             background-color: var(--light-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 2rem;
             margin-bottom: 2rem;
             text-align: center;
@@ -2247,7 +3450,7 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -2255,7 +3458,7 @@
         }
 
         .save-btn:hover {
-            background: #0b7dda;
+            background: #2980b9;
             transform: translateY(-2px);
         }
 
@@ -2294,6 +3497,25 @@
             .save-actions {
                 flex-direction: column;
             }
+            
+            .ecosystem-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ecosystem-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .species-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .stats-counter {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         @media (max-width: 576px) {
@@ -2317,20 +3539,34 @@
         .editorial-staff {
             padding: 6rem 0;
             background-color: var(--white);
+            position: relative;
+        }
+
+        .editorial-staff::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23795548" opacity="0.03"><path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z M50,30 C40,30 30,40 30,50 C30,60 40,70 50,70 C60,70 70,60 70,50 C70,40 60,30 50,30 Z"/></svg>') repeat;
+            z-index: 0;
         }
 
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .staff-card {
             background-color: var(--light-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 2.5rem 2rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -2347,7 +3583,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: var(--gradient-primary);
         }
 
         .staff-card:hover {
@@ -2372,6 +3608,18 @@
             background-color: var(--primary-dark);
             color: var(--white);
             padding: 4rem 0 1.5rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23ffffff" opacity="0.03"><circle cx="50" cy="50" r="1"/></svg>') repeat;
+            z-index: 0;
         }
 
         .footer-content {
@@ -2379,6 +3627,8 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-column h3 {
@@ -2409,7 +3659,7 @@
         .footer-column ul li a {
             color: #ccc;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
             display: inline-block;
         }
 
@@ -2433,7 +3683,7 @@
             border-radius: 50%;
             color: var(--white);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .social-links a:hover {
@@ -2447,6 +3697,8 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
             color: #ccc;
+            position: relative;
+            z-index: 1;
         }
 
         /* References Section in Footer */
@@ -2455,6 +3707,8 @@
             border-radius: 8px;
             padding: 1.5rem;
             margin-top: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .references-footer h4 {
@@ -2497,6 +3751,263 @@
             font-size: 0.8rem;
             margin-top: 0.3rem;
             font-style: italic;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            z-index: 99;
+            transition: var(--transition);
+            border: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Floating Elements Animation */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 4s;
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+        
+        .floating-element:nth-child(4) {
+            bottom: 10%;
+            right: 5%;
+            animation-delay: 6s;
+            font-size: 1.8rem;
+            color: var(--health);
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(-5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Enhanced UI Elements */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary-light), transparent);
+            margin: 4rem 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .interactive-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .interactive-card:hover::before {
+            left: 100%;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        /* Enhanced Navigation Effects */
+        .nav-highlight {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover .nav-highlight {
+            width: 100%;
+        }
+
+        /* Enhanced Button Styles */
+        .btn-gradient {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-gradient:hover {
+            background: var(--gradient-primary);
+            filter: brightness(1.1);
+        }
+
+        /* Enhanced Card Styles */
+        .card-hover {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-hover:hover::after {
+            opacity: 1;
+        }
+
+        /* Enhanced Image Effects */
+        .image-zoom {
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .image-zoom img {
+            transition: transform 0.5s ease;
+        }
+
+        .image-zoom:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Section Backgrounds */
+        .section-bg-pattern {
+            position: relative;
+        }
+
+        .section-bg-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(46, 139, 46, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(52, 152, 219, 0.1) 0%, transparent 50%);
+            z-index: 0;
         }
 
         /* Responsive Design */
@@ -2582,6 +4093,13 @@
             .ai-options {
                 flex-direction: column;
             }
+
+            .back-to-top {
+                left: 20px;
+                bottom: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -2605,9 +4123,22 @@
     </style>
 </head>
 <body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element"><i class="fas fa-leaf"></i></div>
+        <div class="floating-element"><i class="fas fa-tree"></i></div>
+        <div class="floating-element"><i class="fas fa-seedling"></i></div>
+        <div class="floating-element"><i class="fas fa-water"></i></div>
+    </div>
+
     <!-- AI Voice Explanation Button -->
     <button class="ai-explanation-btn" id="aiExplanationBtn">
         <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
     </button>
 
     <!-- AI Explanation Modal -->
@@ -2631,6 +4162,7 @@
                         <option value="health">Global Health Issues</option>
                         <option value="technology">Technological Advancements</option>
                         <option value="sts">STS Connection</option>
+                        <option value="videos">Video Resources</option>
                     </select>
                 </div>
                 
@@ -2658,6 +4190,52 @@
         </div>
     </div>
 
+    <!-- Calculator Info Modal -->
+    <div class="calculator-info-modal" id="calculatorInfoModal">
+        <div class="calculator-info-content">
+            <div class="calculator-info-header">
+                <h3>How the Biodiversity Impact Calculator Works</h3>
+                <button class="close-calculator-info" id="closeCalculatorInfo">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="calculator-info-body">
+                <div class="info-content">
+                    <div class="info-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h5>Input Your Data</h5>
+                            <p>Enter the forest area lost in hectares, number of species lost, and pollution level (1-10 scale).</p>
+                        </div>
+                    </div>
+                    <div class="info-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Calculation Process</h5>
+                            <p>The calculator uses scientific formulas to estimate environmental impacts based on your inputs:</p>
+                            <ul>
+                                <li><strong>CO2 Absorption:</strong> Forests absorb approximately 6 tons of CO2 per hectare annually</li>
+                                <li><strong>Economic Cost:</strong> Based on ecosystem service valuation and species extinction costs</li>
+                                <li><strong>Recovery Time:</strong> Calculated based on ecosystem complexity and damage severity</li>
+                                <li><strong>Ecosystem Health:</strong> Assessed through biodiversity metrics and pollution impact</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h5>Interpret Results</h5>
+                            <p>Understand what the numbers mean for environmental sustainability and human wellbeing.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-note">
+                    <p><strong>Note:</strong> This calculator provides estimates based on scientific models. Actual impacts may vary based on specific ecosystem characteristics and local conditions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Save Results Modal -->
     <div class="save-results-modal" id="saveResultsModal">
         <div class="save-results-content">
@@ -2676,6 +4254,56 @@
                         <i class="fas fa-download"></i> Save Results
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Species Modal -->
+    <div class="species-modal" id="speciesModal">
+        <div class="species-modal-content">
+            <div class="species-modal-header">
+                <h3 id="modalSpeciesName">Species Name</h3>
+                <button class="close-species-modal" id="closeSpeciesModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="species-modal-body">
+                <div class="species-modal-image" id="modalSpeciesImage"></div>
+                <div class="species-modal-info">
+                    <h4>About This Species</h4>
+                    <p id="modalSpeciesDescription"></p>
+                    
+                    <div class="species-fact">
+                        <strong>Conservation Status:</strong> <span id="modalSpeciesStatus"></span>
+                    </div>
+                    
+                    <div class="species-fact">
+                        <strong>Population Trend:</strong> <span id="modalSpeciesTrend"></span>
+                    </div>
+                    
+                    <div class="species-fact">
+                        <strong>Major Threats:</strong> <span id="modalSpeciesThreats"></span>
+                    </div>
+                    
+                    <div class="species-fact">
+                        <strong>Conservation Efforts:</strong> <span id="modalSpeciesEfforts"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 id="videoModalTitle">Video Title</h3>
+                <button class="close-video-modal" id="closeVideoModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-modal-body">
+                <iframe id="videoFrame" src="" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -2714,6 +4342,7 @@
                         <li><a href="#health">Health Issues</a></li>
                         <li><a href="#technology">Technology</a></li>
                         <li><a href="#sts">STS Connection</a></li>
+                        <li><a href="#videos">Video Resources</a></li>
                         <li><a href="#quiz">Quiz</a></li>
                         <li><a href="#editorial-staff">Our Team</a></li>
                     </ul>
@@ -2731,7 +4360,7 @@
                 <p>Biodiversity loss represents one of the most critical challenges of our time, with profound implications for human health, economic stability, and social well-being. This website explores how science and technology can help address these challenges while considering societal dimensions.</p>
                 <div class="btn-container">
                     <a href="#key-facts" class="btn">Explore the Facts</a>
-                    <a href="#sts" class="btn btn-outline">Learn About STS</a>
+                    <a href="#videos" class="btn btn-outline">Watch Videos</a>
                 </div>
             </div>
         </div>
@@ -2744,6 +4373,27 @@
                 <h2>Key Facts About Biodiversity</h2>
                 <p>Critical statistics that highlight the importance of biodiversity for human health and society</p>
             </div>
+            
+            <!-- Interactive Stats Counter -->
+            <div class="stats-counter">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="75">0</div>
+                    <div class="stat-label">Food Crops Rely on Pollinators</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Medicines from Natural Sources</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="80">0</div>
+                    <div class="stat-label">Terrestrial Biodiversity in Forests</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="60">0</div>
+                    <div class="stat-label">Extinctions from Invasive Species</div>
+                </div>
+            </div>
+            
             <div class="facts-grid">
                 <div class="fact-card">
                     <i class="fas fa-seedling"></i>
@@ -2786,6 +4436,34 @@
                 <h2>Biodiversity Overview</h2>
                 <p>Understanding the foundation of all life on Earth</p>
             </div>
+            
+            <!-- Interactive Ecosystem Visualization -->
+            <div class="ecosystem-visualization">
+                <h3 class="visualization-title">Interactive Ecosystem Visualization</h3>
+                <div class="ecosystem-container">
+                    <div class="ecosystem-canvas-container">
+                        <canvas id="ecosystemCanvas"></canvas>
+                    </div>
+                    <div class="ecosystem-controls">
+                        <button class="ecosystem-btn" id="addSpecies">
+                            <i class="fas fa-plus"></i> Add Species
+                        </button>
+                        <button class="ecosystem-btn" id="removeSpecies">
+                            <i class="fas fa-minus"></i> Remove Species
+                        </button>
+                        <button class="ecosystem-btn" id="simulateThreat">
+                            <i class="fas fa-bolt"></i> Simulate Threat
+                        </button>
+                        <button class="ecosystem-btn" id="resetEcosystem">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="ecosystem-info">
+                    <p>This interactive visualization demonstrates how species interact in an ecosystem. Add species to see how biodiversity increases ecosystem resilience. Simulate threats to observe how biodiversity loss affects the entire system.</p>
+                </div>
+            </div>
+            
             <div class="overview-content">
                 <div class="overview-text">
                     <h3>The Web of Life</h3>
@@ -2835,6 +4513,15 @@
                 <h2>Threats to Biodiversity</h2>
                 <p>Understanding the mounting crisis that threatens all life on Earth</p>
             </div>
+            
+            <!-- Interactive Species Explorer -->
+            <div class="species-explorer">
+                <h3 class="explorer-title">Endangered Species Explorer</h3>
+                <div class="species-grid" id="speciesGrid">
+                    <!-- Species cards will be dynamically generated -->
+                </div>
+            </div>
+            
             <div class="threats-content">
                 <div class="threats-text">
                     <h3>Our Fragile Web of Life</h3>
@@ -2898,6 +4585,50 @@
                     </div>
                     <h3>Pollution</h3>
                     <p>Plastic pollution, chemical runoff, and air pollution are poisoning our land, water, and air, harming both wildlife and human health.</p>
+                </div>
+            </div>
+            
+            <!-- Interactive Impact Calculator -->
+            <div class="impact-calculator">
+                <h3 class="calculator-title">Biodiversity Impact Calculator</h3>
+                <div class="calculator-container">
+                    <div class="calculator-inputs">
+                        <div class="calculator-input-group">
+                            <label for="forestArea">Forest Area Lost (hectares)</label>
+                            <input type="number" id="forestArea" class="calculator-input" value="1000" min="0">
+                        </div>
+                        <div class="calculator-input-group">
+                            <label for="speciesLost">Species Lost</label>
+                            <input type="number" id="speciesLost" class="calculator-input" value="5" min="0">
+                        </div>
+                        <div class="calculator-input-group">
+                            <label for="pollutionLevel">Pollution Level (1-10)</label>
+                            <input type="range" id="pollutionLevel" class="calculator-input" min="1" max="10" value="5">
+                        </div>
+                        <button class="calculate-btn" id="calculateImpact">Calculate Impact</button>
+                        <button class="calculator-info-btn" id="calculatorInfoBtn">
+                            <i class="fas fa-info-circle"></i> How This Calculator Works
+                        </button>
+                    </div>
+                    <div class="calculator-results">
+                        <h4>Environmental Impact</h4>
+                        <div class="result-item">
+                            <span class="result-label">CO2 Absorption Lost:</span>
+                            <span class="result-value" id="co2Result">0 tons/year</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Economic Cost:</span>
+                            <span class="result-value" id="economicResult">$0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Recovery Time:</span>
+                            <span class="result-value" id="recoveryResult">0 years</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Ecosystem Health:</span>
+                            <span class="result-value" id="healthResult">0%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -3355,6 +5086,82 @@
         </div>
     </section>
 
+    <!-- Video Resources Section -->
+    <section class="video-resources" id="videos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Video Resources</h2>
+                <p>Watch these videos to learn more about biodiversity and its importance</p>
+            </div>
+            
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/kHhspf5IfdE/maxresdefault.jpg" alt="Why is biodiversity so important?">
+                        <div class="video-play-btn" data-video-id="kHhspf5IfdE">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Why is biodiversity so important?</h3>
+                        <p>This video explains the importance of biodiversity and how it affects our daily lives, from the air we breathe to the food we eat.</p>
+                        <a href="https://youtu.be/kHhspf5IfdE" target="_blank" class="video-link">
+                            <i class="fas fa-external-link-alt"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/QWLZM38t0YU/maxresdefault.jpg" alt="What is Biodiversity?">
+                        <div class="video-play-btn" data-video-id="QWLZM38t0YU">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>What is Biodiversity?</h3>
+                        <p>This video provides a comprehensive overview of biodiversity, including its different levels and why it matters for ecosystem health.</p>
+                        <a href="https://youtu.be/QWLZM38t0YU" target="_blank" class="video-link">
+                            <i class="fas fa-external-link-alt"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/xvnadbj4gwk/maxresdefault.jpg" alt="Human Impacts on Biodiversity">
+                        <div class="video-play-btn" data-video-id="xvnadbj4gwk">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Human Impacts on Biodiversity</h3>
+                        <p>This video explores how human activities are affecting biodiversity worldwide and what we can do to reduce our impact.</p>
+                        <a href="https://youtu.be/xvnadbj4gwk" target="_blank" class="video-link">
+                            <i class="fas fa-external-link-alt"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/1cvMX82iwRM/maxresdefault.jpg" alt="Biodiversity and Ecosystem Services">
+                        <div class="video-play-btn" data-video-id="1cvMX82iwRM">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Biodiversity and Ecosystem Services</h3>
+                        <p>This video explains the concept of ecosystem services and how biodiversity provides essential benefits to humanity.</p>
+                        <a href="https://youtu.be/1cvMX82iwRM" target="_blank" class="video-link">
+                            <i class="fas fa-external-link-alt"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
@@ -3375,16 +5182,17 @@
             <div class="quiz-container">
                 <div class="quiz-intro" id="quizIntro">
                     <div class="quiz-image">
-                        <img src="quiz-biodiversity.jpg" alt="Biodiversity Quiz">
+                        <img src="quiz-image.jpg" alt="Biodiversity Quiz">
                     </div>
                     <div class="quiz-info">
                         <h3>Biodiversity Quiz Challenge</h3>
                         <p>This quiz will test your knowledge about biodiversity threats, conservation efforts, and the relationship between ecosystems and human health.</p>
                         <ul>
-                            <li><i class="fas fa-check-circle"></i> 10 multiple-choice questions</li>
+                            <li><i class="fas fa-check-circle"></i> 20 multiple-choice questions</li>
                             <li><i class="fas fa-check-circle"></i> Instant feedback with explanations</li>
                             <li><i class="fas fa-check-circle"></i> Learn interesting facts about biodiversity</li>
                             <li><i class="fas fa-check-circle"></i> Get personalized results based on your score</li>
+                            <li><i class="fas fa-random"></i> Questions and choices shuffled each attempt</li>
                         </ul>
                         <button class="btn start-quiz-btn" id="startQuiz">Start Quiz</button>
                     </div>
@@ -3396,7 +5204,7 @@
                             <div class="progress-bar">
                                 <div class="progress-fill" id="progressFill"></div>
                             </div>
-                            <span class="progress-text" id="progressText">Question 1 of 10</span>
+                            <span class="progress-text" id="progressText">Question 1 of 20</span>
                         </div>
                         <div class="quiz-score">
                             Score: <span id="scoreValue">0</span>
@@ -3514,6 +5322,8 @@
                         <li><a href="#health">Health Issues</a></li>
                         <li><a href="#technology">Technology</a></li>
                         <li><a href="#sts">STS Connection</a></li>
+                        <li><a href="#videos">Video Resources</a></li>
+                        <li><a href="#quiz">Interactive Quiz</a></li>
                         <li><a href="#editorial-staff">Our Team</a></li>
                     </ul>
                 </div>
@@ -3579,12 +5389,26 @@
         const aiVoiceText = document.getElementById('aiVoiceText');
         const voiceStatus = document.getElementById('voiceStatus');
 
+        // Calculator Info Modal
+        const calculatorInfoModal = document.getElementById('calculatorInfoModal');
+        const calculatorInfoBtn = document.getElementById('calculatorInfoBtn');
+        const closeCalculatorInfo = document.getElementById('closeCalculatorInfo');
+
         // Save Results Modal
         const saveResultsModal = document.getElementById('saveResultsModal');
         const closeSaveModal = document.getElementById('closeSaveModal');
         const saveResultsBtn = document.getElementById('saveResults');
         const saveableResults = document.getElementById('saveableResults');
         const saveResultsBtnInQuiz = document.getElementById('saveResultsBtn');
+
+        // Video Modal
+        const videoModal = document.getElementById('videoModal');
+        const closeVideoModal = document.getElementById('closeVideoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        const videoModalTitle = document.getElementById('videoModalTitle');
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
 
         // Web Speech API
         let currentUtterance = null;
@@ -3609,6 +5433,26 @@
                 aiExplanationModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 stopSpeech();
+            }
+        });
+
+        // Open Calculator Info Modal
+        calculatorInfoBtn.addEventListener('click', () => {
+            calculatorInfoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close Calculator Info Modal
+        closeCalculatorInfo.addEventListener('click', () => {
+            calculatorInfoModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        calculatorInfoModal.addEventListener('click', (e) => {
+            if (e.target === calculatorInfoModal) {
+                calculatorInfoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
 
@@ -3661,6 +5505,36 @@
                 });
             } else {
                 alert('Save functionality requires the html2canvas library. Please include it in your project.');
+            }
+        });
+
+        // Video Modal Functionality
+        document.querySelectorAll('.video-play-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoId = btn.getAttribute('data-video-id');
+                const videoCard = btn.closest('.video-card');
+                const videoTitle = videoCard.querySelector('h3').textContent;
+                
+                videoModalTitle.textContent = videoTitle;
+                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close Video Modal
+        closeVideoModal.addEventListener('click', () => {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            videoFrame.src = '';
+        });
+
+        // Close modal when clicking outside
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                videoFrame.src = '';
             }
         });
 
@@ -3732,6 +5606,12 @@
                 <p>Society determines the values, policies, and behaviors that shape our relationship with nature. Cultural norms, economic systems, and political decisions all influence how we interact with and protect our natural world.</p>
                 <p>The relationship between biodiversity and human society is complex and bidirectional. While human activities drive biodiversity loss, the resulting ecological degradation threatens human health, food security, and social stability.</p>
                 <p>An integrated approach that considers scientific evidence, technological possibilities, and societal values is essential for effective biodiversity conservation and creating a sustainable future.</p>
+            `,
+            'videos': `
+                <p>Our video resources section provides engaging visual content to help you understand biodiversity concepts more deeply.</p>
+                <p>We have curated several educational videos that cover different aspects of biodiversity, including why it's important, what it is, how human activities impact it, and the ecosystem services it provides.</p>
+                <p>These videos are excellent resources for visual learners and those who prefer multimedia content over text. They can help reinforce the concepts discussed throughout this website and provide additional perspectives on biodiversity issues.</p>
+                <p>Each video is accompanied by a brief description to help you choose which ones to watch based on your interests and learning needs.</p>
             `
         };
 
@@ -3869,7 +5749,7 @@
             const warningDiv = document.createElement('div');
             warningDiv.style.cssText = `
                 background-color: #ffebee;
-                border: 1px solid #f44336;
+                border: 1px solid #e74c3c;
                 border-radius: 8px;
                 padding: 1rem;
                 margin-bottom: 1rem;
@@ -3896,6 +5776,22 @@
                 // Voices are loaded, we can use them now
             };
         }
+
+        // Back to Top Button Functionality
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
         // Mobile Menu Toggle
         const mobileMenu = document.querySelector('.mobile-menu');
@@ -3962,7 +5858,8 @@
             { title: "Telemedicine", content: "Telemedicine enables virtual communication between patients and physicians, eliminating the need for patients to travel to clinics while maintaining quality care.", section: "technology" },
             { title: "Robotic Surgical Systems", content: "Robotic surgery helps doctors perform complex operations with more accuracy, flexibility, and control than traditional methods.", section: "technology" },
             { title: "mRNA Technology", content: "mRNA technology holds promise for treating various diseases, including cancer and genetic disorders, building on its success with COVID-19 vaccines.", section: "technology" },
-            { title: "STS Connection", content: "The relationship between biodiversity and human society is complex and bidirectional. While human activities drive biodiversity loss, the resulting ecological degradation threatens human health, food security, and social stability.", section: "sts" }
+            { title: "STS Connection", content: "The relationship between biodiversity and human society is complex and bidirectional. While human activities drive biodiversity loss, the resulting ecological degradation threatens human health, food security, and social stability.", section: "sts" },
+            { title: "Video Resources", content: "Watch educational videos about biodiversity, its importance, human impacts, and ecosystem services.", section: "videos" }
         ];
 
         // Function to perform search
@@ -4098,6 +5995,459 @@
             });
         }
 
+        // Interactive Stats Counter
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + (stat.getAttribute('data-target') === '75' ? '%' : '%');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + (stat.getAttribute('data-target') === '75' ? '%' : '%');
+                    }
+                }, 20);
+            });
+        }
+        
+        // Initialize stats animation when in viewport
+        const statsSection = document.querySelector('.stats-counter');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Interactive Ecosystem Visualization
+        const ecosystemCanvas = document.getElementById('ecosystemCanvas');
+        const ctx = ecosystemCanvas.getContext('2d');
+        
+        // Set canvas dimensions
+        function setCanvasDimensions() {
+            ecosystemCanvas.width = ecosystemCanvas.parentElement.offsetWidth;
+            ecosystemCanvas.height = ecosystemCanvas.parentElement.offsetHeight;
+        }
+        
+        setCanvasDimensions();
+        window.addEventListener('resize', setCanvasDimensions);
+        
+        // Ecosystem simulation variables
+        let species = [];
+        let threats = [];
+        let ecosystemHealth = 100;
+        
+        // Species class
+        class Species {
+            constructor(type, x, y) {
+                this.type = type; // 'plant', 'herbivore', 'carnivore'
+                this.x = x;
+                this.y = y;
+                this.size = type === 'plant' ? 5 : type === 'herbivore' ? 8 : 10;
+                this.speed = type === 'plant' ? 0 : type === 'herbivore' ? 1 : 1.5;
+                this.direction = Math.random() * Math.PI * 2;
+                this.energy = 100;
+                this.color = this.getColor();
+            }
+            
+            getColor() {
+                switch(this.type) {
+                    case 'plant': return '#1a5d1a';
+                    case 'herbivore': return '#ff6b35';
+                    case 'carnivore': return '#e74c3c';
+                    default: return '#000000';
+                }
+            }
+            
+            update() {
+                // Plants don't move
+                if (this.type === 'plant') return;
+                
+                // Change direction randomly
+                if (Math.random() < 0.02) {
+                    this.direction = Math.random() * Math.PI * 2;
+                }
+                
+                // Move
+                this.x += Math.cos(this.direction) * this.speed;
+                this.y += Math.sin(this.direction) * this.speed;
+                
+                // Bounce off walls
+                if (this.x < this.size || this.x > ecosystemCanvas.width - this.size) {
+                    this.direction = Math.PI - this.direction;
+                }
+                if (this.y < this.size || this.y > ecosystemCanvas.height - this.size) {
+                    this.direction = -this.direction;
+                }
+                
+                // Keep within bounds
+                this.x = Math.max(this.size, Math.min(ecosystemCanvas.width - this.size, this.x));
+                this.y = Math.max(this.size, Math.min(ecosystemCanvas.height - this.size, this.y));
+                
+                // Lose energy
+                this.energy -= 0.1;
+                
+                // Die if no energy
+                if (this.energy <= 0) {
+                    const index = species.indexOf(this);
+                    if (index > -1) {
+                        species.splice(index, 1);
+                    }
+                }
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                
+                // Draw energy indicator for animals
+                if (this.type !== 'plant') {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size + 2, 0, (this.energy / 100) * Math.PI * 2);
+                    ctx.strokeStyle = this.energy > 50 ? '#1a5d1a' : this.energy > 20 ? '#ff6b35' : '#e74c3c';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // Threat class
+        class Threat {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 0;
+                this.maxRadius = 100;
+                this.growthRate = 2;
+                this.active = true;
+            }
+            
+            update() {
+                if (this.radius < this.maxRadius) {
+                    this.radius += this.growthRate;
+                } else {
+                    this.active = false;
+                }
+                
+                // Check for species in threat radius
+                species.forEach(spec => {
+                    const dx = spec.x - this.x;
+                    const dy = spec.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < this.radius + spec.size) {
+                        // Reduce species energy
+                        spec.energy -= 5;
+                        
+                        // Small chance of immediate death
+                        if (Math.random() < 0.1) {
+                            const index = species.indexOf(spec);
+                            if (index > -1) {
+                                species.splice(index, 1);
+                            }
+                        }
+                    }
+                });
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(231, 76, 60, 0.3)';
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(231, 76, 60, 0.7)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+        
+        // Initialize ecosystem with some species
+        function initializeEcosystem() {
+            species = [];
+            
+            // Add some plants
+            for (let i = 0; i < 20; i++) {
+                species.push(new Species(
+                    'plant',
+                    Math.random() * ecosystemCanvas.width,
+                    Math.random() * ecosystemCanvas.height
+                ));
+            }
+            
+            // Add some herbivores
+            for (let i = 0; i < 8; i++) {
+                species.push(new Species(
+                    'herbivore',
+                    Math.random() * ecosystemCanvas.width,
+                    Math.random() * ecosystemCanvas.height
+                ));
+            }
+            
+            // Add some carnivores
+            for (let i = 0; i < 3; i++) {
+                species.push(new Species(
+                    'carnivore',
+                    Math.random() * ecosystemCanvas.width,
+                    Math.random() * ecosystemCanvas.height
+                ));
+            }
+            
+            threats = [];
+            ecosystemHealth = 100;
+        }
+        
+        // Draw ecosystem
+        function drawEcosystem() {
+            // Clear canvas
+            ctx.clearRect(0, 0, ecosystemCanvas.width, ecosystemCanvas.height);
+            
+            // Draw background
+            ctx.fillStyle = '#E8F5E9';
+            ctx.fillRect(0, 0, ecosystemCanvas.width, ecosystemCanvas.height);
+            
+            // Draw species
+            species.forEach(spec => {
+                spec.draw();
+            });
+            
+            // Draw threats
+            threats.forEach(threat => {
+                threat.draw();
+            });
+            
+            // Draw ecosystem health indicator
+            ctx.fillStyle = ecosystemHealth > 70 ? '#1a5d1a' : ecosystemHealth > 40 ? '#ff6b35' : '#e74c3c';
+            ctx.fillRect(10, 10, ecosystemHealth * 2, 20);
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(10, 10, 200, 20);
+            
+            ctx.fillStyle = '#333';
+            ctx.font = '14px Arial';
+            ctx.fillText(`Ecosystem Health: ${Math.round(ecosystemHealth)}%`, 220, 25);
+            
+            // Draw species count
+            const plantCount = species.filter(s => s.type === 'plant').length;
+            const herbivoreCount = species.filter(s => s.type === 'herbivore').length;
+            const carnivoreCount = species.filter(s => s.type === 'carnivore').length;
+            
+            ctx.fillText(`Plants: ${plantCount}`, 10, 50);
+            ctx.fillText(`Herbivores: ${herbivoreCount}`, 10, 70);
+            ctx.fillText(`Carnivores: ${carnivoreCount}`, 10, 90);
+        }
+        
+        // Update ecosystem
+        function updateEcosystem() {
+            // Update species
+            species.forEach(spec => {
+                spec.update();
+            });
+            
+            // Update threats
+            threats.forEach((threat, index) => {
+                threat.update();
+                if (!threat.active) {
+                    threats.splice(index, 1);
+                }
+            });
+            
+            // Calculate ecosystem health based on species diversity and count
+            const totalSpecies = species.length;
+            const plantCount = species.filter(s => s.type === 'plant').length;
+            const herbivoreCount = species.filter(s => s.type === 'herbivore').length;
+            const carnivoreCount = species.filter(s => s.type === 'carnivore').length;
+            
+            // Health calculation (simplified)
+            const maxSpecies = 50;
+            const diversityScore = (plantCount > 0 ? 1 : 0) + (herbivoreCount > 0 ? 1 : 0) + (carnivoreCount > 0 ? 1 : 0);
+            
+            ecosystemHealth = Math.min(100, (totalSpecies / maxSpecies) * 70 + (diversityScore / 3) * 30);
+            
+            drawEcosystem();
+        }
+        
+        // Ecosystem controls
+        document.getElementById('addSpecies').addEventListener('click', () => {
+            const types = ['plant', 'herbivore', 'carnivore'];
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            
+            species.push(new Species(
+                randomType,
+                Math.random() * ecosystemCanvas.width,
+                Math.random() * ecosystemCanvas.height
+            ));
+        });
+        
+        document.getElementById('removeSpecies').addEventListener('click', () => {
+            if (species.length > 0) {
+                species.splice(Math.floor(Math.random() * species.length), 1);
+            }
+        });
+        
+        document.getElementById('simulateThreat').addEventListener('click', () => {
+            threats.push(new Threat(
+                Math.random() * ecosystemCanvas.width,
+                Math.random() * ecosystemCanvas.height
+            ));
+        });
+        
+        document.getElementById('resetEcosystem').addEventListener('click', () => {
+            initializeEcosystem();
+        });
+        
+        // Initialize and start ecosystem simulation
+        initializeEcosystem();
+        setInterval(updateEcosystem, 50);
+
+        // Interactive Species Explorer
+        const speciesData = [
+            {
+                name: "Sumatran Tiger",
+                status: "Critically Endangered",
+                image: "sumatran-tiger.jpg",
+                description: "The Sumatran tiger is the smallest of all tiger subspecies and is found only on the Indonesian island of Sumatra. With fewer than 400 individuals remaining in the wild, it is critically endangered due to habitat loss and poaching.",
+                population: "Decreasing",
+                threats: "Habitat loss, poaching, human-wildlife conflict",
+                efforts: "Protected areas, anti-poaching patrols, community education"
+            },
+            {
+                name: "Black Rhinoceros",
+                status: "Critically Endangered",
+                image: "black-rhino.jpg",
+                description: "The black rhinoceros is native to eastern and southern Africa. Despite its name, it is actually gray in color. It is critically endangered due to poaching for its horn, which is highly valued in traditional medicine.",
+                population: "Increasing",
+                threats: "Poaching, habitat loss",
+                efforts: "Anti-poaching measures, habitat protection, breeding programs"
+            },
+            {
+                name: "Mountain Gorilla",
+                status: "Endangered",
+                image: "mountain-gorilla.jpg",
+                description: "Mountain gorillas are found in the volcanic mountains of Central Africa. They have thicker fur than other gorillas, allowing them to live at higher altitudes. Conservation efforts have helped increase their population in recent years.",
+                population: "Increasing",
+                threats: "Habitat loss, poaching, disease",
+                efforts: "Protected areas, tourism regulation, veterinary care"
+            },
+            {
+                name: "Hawksbill Sea Turtle",
+                status: "Critically Endangered",
+                image: "hawksbill-turtle.jpg",
+                description: "The hawksbill sea turtle is found in tropical reefs of the Indian, Pacific, and Atlantic Oceans. It is named for its narrow, pointed beak. It is critically endangered due to hunting for its beautiful shell and habitat loss.",
+                population: "Decreasing",
+                threats: "Poaching, habitat loss, climate change",
+                efforts: "Protected nesting beaches, fishing regulations, awareness campaigns"
+            },
+            {
+                name: "Blue Whale",
+                status: "Endangered",
+                image: "blue-whale.jpg",
+                description: "The blue whale is the largest animal ever known to have existed. It can reach lengths of up to 100 feet and weigh as much as 200 tons. Despite being protected, it remains endangered due to historical whaling and current threats like ship strikes.",
+                population: "Increasing",
+                threats: "Ship strikes, entanglement, noise pollution",
+                efforts: "Shipping lane adjustments, protected areas, research"
+            },
+            {
+                name: "Polar Bear",
+                status: "Vulnerable",
+                image: "polar-bear.jpg",
+                description: "Polar bears are the largest land carnivores and are uniquely adapted to life in the Arctic. They depend on sea ice to hunt seals, their primary food source. Climate change is causing rapid loss of their sea ice habitat.",
+                population: "Decreasing",
+                threats: "Climate change, pollution, oil exploration",
+                efforts: "Climate action, protected areas, research"
+            }
+        ];
+        
+        // Generate species cards
+        const speciesGrid = document.getElementById('speciesGrid');
+        
+        speciesData.forEach((species, index) => {
+            const card = document.createElement('div');
+            card.className = 'species-card';
+            card.innerHTML = `
+                <div class="species-image" style="background-image: url('${species.image}')">
+                    <div class="species-overlay">
+                        <div class="species-name">${species.name}</div>
+                        <div class="species-status">${species.status}</div>
+                    </div>
+                </div>
+                <div class="species-details">
+                    <p>${species.description.substring(0, 100)}...</p>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => {
+                openSpeciesModal(index);
+            });
+            
+            speciesGrid.appendChild(card);
+        });
+        
+        // Species modal functionality
+        const speciesModal = document.getElementById('speciesModal');
+        const closeSpeciesModal = document.getElementById('closeSpeciesModal');
+        
+        function openSpeciesModal(index) {
+            const species = speciesData[index];
+            
+            document.getElementById('modalSpeciesName').textContent = species.name;
+            document.getElementById('modalSpeciesImage').style.backgroundImage = `url('${species.image}')`;
+            document.getElementById('modalSpeciesDescription').textContent = species.description;
+            document.getElementById('modalSpeciesStatus').textContent = species.status;
+            document.getElementById('modalSpeciesTrend').textContent = species.population;
+            document.getElementById('modalSpeciesThreats').textContent = species.threats;
+            document.getElementById('modalSpeciesEfforts').textContent = species.efforts;
+            
+            speciesModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        closeSpeciesModal.addEventListener('click', () => {
+            speciesModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        speciesModal.addEventListener('click', (e) => {
+            if (e.target === speciesModal) {
+                speciesModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Interactive Impact Calculator
+        const calculateBtn = document.getElementById('calculateImpact');
+        
+        calculateBtn.addEventListener('click', () => {
+            const forestArea = parseInt(document.getElementById('forestArea').value) || 0;
+            const speciesLost = parseInt(document.getElementById('speciesLost').value) || 0;
+            const pollutionLevel = parseInt(document.getElementById('pollutionLevel').value) || 1;
+            
+            // Calculate impacts (simplified calculations)
+            const co2Lost = forestArea * 6; // 6 tons CO2 per hectare per year
+            const economicCost = forestArea * 5000 + speciesLost * 100000; // Simplified economic valuation
+            const recoveryTime = Math.max(10, forestArea / 100 + speciesLost * 5); // Years
+            const ecosystemHealth = Math.max(0, 100 - (forestArea / 100) - (speciesLost * 10) - (pollutionLevel * 5));
+            
+            // Update results
+            document.getElementById('co2Result').textContent = co2Lost.toLocaleString() + ' tons/year';
+            document.getElementById('economicResult').textContent = '$' + economicCost.toLocaleString();
+            document.getElementById('recoveryResult').textContent = recoveryTime.toFixed(1) + ' years';
+            document.getElementById('healthResult').textContent = ecosystemHealth.toFixed(1) + '%';
+        });
+
         // Quiz functionality
         const quizIntro = document.getElementById('quizIntro');
         const quizContent = document.getElementById('quizContent');
@@ -4119,8 +6469,10 @@
         let currentQuestion = 0;
         let score = 0;
         let userAnswers = [];
+        let shuffledQuestions = [];
+        let shuffledOptions = [];
 
-        // Quiz questions
+        // Quiz questions - expanded to 20 questions
         const quizQuestions = [
             {
                 question: "What percentage of global food crops rely on pollinators?",
@@ -4186,11 +6538,137 @@
                 ],
                 correctAnswer: 1,
                 explanation: "The 'One Health' approach recognizes the indivisible link between animal, human, and environmental well-being."
+            },
+            {
+                question: "What percentage of Earth's land is now considered degraded?",
+                options: ["15%", "25%", "33%", "50%"],
+                correctAnswer: 2,
+                explanation: "One-third (33%) of the planet's land is now degraded, making it harder to feed our growing global population."
+            },
+            {
+                question: "Which of these contributes to 60% of species extinctions?",
+                options: ["Climate change", "Invasive alien species", "Pollution", "Overfishing"],
+                correctAnswer: 1,
+                explanation: "Invasive alien species contribute to 60% of species extinctions, causing US$ 423 billion in global economic damage each year."
+            },
+            {
+                question: "Since 1970, what percentage of wetlands have been lost globally?",
+                options: ["15%", "25%", "35%", "45%"],
+                correctAnswer: 2,
+                explanation: "Since 1970, 35% of wetlands have been lost globally, despite healthy ecosystems providing 75% of global freshwater resources."
+            },
+            {
+                question: "What is the primary cause of zoonotic spillover?",
+                options: [
+                    "Climate change",
+                    "Habitat destruction bringing humans and wildlife into closer contact",
+                    "Air pollution",
+                    "Genetic modification of crops"
+                ],
+                correctAnswer: 1,
+                explanation: "Habitat destruction brings humans and wildlife into closer contact, dramatically increasing our risk of exposure to pathogens that jump from animals to humans."
+            },
+            {
+                question: "Which technology is revolutionizing healthcare by providing continuous monitoring?",
+                options: ["Telemedicine", "Wearable health technology", "Robotic surgery", "mRNA technology"],
+                correctAnswer: 1,
+                explanation: "Wearable health technology provides continuous monitoring, early detection, and personalized treatment, helping reduce healthcare costs while improving outcomes."
+            },
+            {
+                question: "What does STS stand for in the context of biodiversity?",
+                options: [
+                    "Science, Technology, Society",
+                    "Systematic Technical Solutions",
+                    "Sustainable Technology Systems",
+                    "Scientific Technical Standards"
+                ],
+                correctAnswer: 0,
+                explanation: "STS stands for Science, Technology, and Society, representing the integrated approach to addressing biodiversity threats through scientific understanding, technological solutions, and societal action."
+            },
+            {
+                question: "Which of these is a key solution to protect biodiversity mentioned in the website?",
+                options: [
+                    "Increasing industrial agriculture",
+                    "Protecting and restoring natural habitats",
+                    "Expanding urban development",
+                    "Promoting single-use plastics"
+                ],
+                correctAnswer: 1,
+                explanation: "Protecting and restoring natural habitats is a key solution mentioned, as conservation is essential to maintaining the delicate balance of our ecosystems."
+            },
+            {
+                question: "What is the main focus of the Amazon Rainforest case study?",
+                options: [
+                    "Economic benefits of deforestation",
+                    "Record levels of deforestation threatening biodiversity",
+                    "Success of agricultural expansion",
+                    "Urban development opportunities"
+                ],
+                correctAnswer: 1,
+                explanation: "The Amazon Rainforest case study focuses on how record levels of deforestation are threatening the region's incredible biodiversity, despite it being home to one-third of the planet's species."
+            },
+            {
+                question: "Which of these is NOT a level of biodiversity?",
+                options: ["Genetic diversity", "Species diversity", "Ecosystem diversity", "Economic diversity"],
+                correctAnswer: 3,
+                explanation: "The three main levels of biodiversity are genetic diversity, species diversity, and ecosystem diversity. Economic diversity is not a level of biodiversity."
+            },
+            {
+                question: "What role does technology play in biodiversity conservation?",
+                options: [
+                    "It has no significant role",
+                    "It offers tools for monitoring and mitigation",
+                    "It primarily focuses on economic development",
+                    "It replaces the need for conservation efforts"
+                ],
+                correctAnswer: 1,
+                explanation: "Technology offers tools for monitoring, mitigation, and conservation solutions, from satellite imagery to genetic sequencing and AI-powered camera traps."
             }
         ];
 
+        // Function to shuffle array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Function to shuffle questions and options
+        function shuffleQuiz() {
+            // Shuffle the questions
+            shuffledQuestions = shuffleArray(quizQuestions);
+            
+            // For each question, shuffle the options and track the new correct answer position
+            shuffledQuestions = shuffledQuestions.map(question => {
+                // Create an array of option indices [0, 1, 2, 3]
+                const optionIndices = question.options.map((_, index) => index);
+                
+                // Shuffle the option indices
+                const shuffledIndices = shuffleArray(optionIndices);
+                
+                // Create new options array with shuffled order
+                const shuffledOptions = shuffledIndices.map(index => question.options[index]);
+                
+                // Find the new position of the correct answer
+                const newCorrectAnswer = shuffledIndices.indexOf(question.correctAnswer);
+                
+                // Return the question with shuffled options and updated correct answer
+                return {
+                    ...question,
+                    options: shuffledOptions,
+                    correctAnswer: newCorrectAnswer
+                };
+            });
+        }
+
         // Start quiz
         startQuizBtn.addEventListener('click', () => {
+            // Shuffle questions and options
+            shuffleQuiz();
+            
             quizIntro.style.display = 'none';
             quizContent.style.display = 'block';
             loadQuestion();
@@ -4198,13 +6676,13 @@
 
         // Load question
         function loadQuestion() {
-            const question = quizQuestions[currentQuestion];
+            const question = shuffledQuestions[currentQuestion];
             questionText.textContent = question.question;
             
             // Update progress
-            const progress = ((currentQuestion) / quizQuestions.length) * 100;
+            const progress = ((currentQuestion) / shuffledQuestions.length) * 100;
             progressFill.style.width = `${progress}%`;
-            progressText.textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+            progressText.textContent = `Question ${currentQuestion + 1} of ${shuffledQuestions.length}`;
             
             // Clear previous options
             optionsContainer.innerHTML = '';
@@ -4227,7 +6705,7 @@
         function selectOption(e) {
             const selectedOption = e.target;
             const selectedIndex = parseInt(selectedOption.dataset.index);
-            const question = quizQuestions[currentQuestion];
+            const question = shuffledQuestions[currentQuestion];
             
             // Disable all options
             const allOptions = optionsContainer.querySelectorAll('.option');
@@ -4279,101 +6757,19 @@
         nextQuestionBtn.addEventListener('click', () => {
             currentQuestion++;
             
-            if (currentQuestion < quizQuestions.length) {
+            if (currentQuestion < shuffledQuestions.length) {
                 loadQuestion();
             } else {
                 showResults();
             }
         });
 
-        // Confetti Effect Function
-        function createConfetti() {
-            const canvas = document.createElement('canvas');
-            canvas.id = 'confetti-canvas';
-            document.body.appendChild(canvas);
-            
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            const confettiPieces = [];
-            const colors = [
-                '#2e7d32', '#4caf50', '#ff9800', '#2196f3', 
-                '#e91e63', '#9c27b0', '#3f51b5', '#00bcd4'
-            ];
-            
-            // Create confetti pieces
-            for (let i = 0; i < 150; i++) {
-                confettiPieces.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    size: Math.random() * 10 + 5,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    speed: Math.random() * 3 + 2,
-                    angle: Math.random() * 360,
-                    rotation: Math.random() * 360,
-                    rotationSpeed: Math.random() * 10 - 5
-                });
-            }
-            
-            function drawConfetti() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                let activePieces = 0;
-                
-                confettiPieces.forEach(piece => {
-                    ctx.save();
-                    ctx.translate(piece.x, piece.y);
-                    ctx.rotate(piece.rotation * Math.PI / 180);
-                    
-                    ctx.fillStyle = piece.color;
-                    ctx.fillRect(-piece.size / 2, -piece.size / 2, piece.size, piece.size);
-                    
-                    ctx.restore();
-                    
-                    // Update position
-                    piece.y += piece.speed;
-                    piece.x += Math.sin(piece.angle * Math.PI / 180) * 2;
-                    piece.rotation += piece.rotationSpeed;
-                    piece.angle += 1;
-                    
-                    // Reset if out of screen
-                    if (piece.y < canvas.height) {
-                        activePieces++;
-                    } else if (Math.random() < 0.01) {
-                        piece.y = -20;
-                        piece.x = Math.random() * canvas.width;
-                    }
-                });
-                
-                if (activePieces > 0) {
-                    requestAnimationFrame(drawConfetti);
-                } else {
-                    // Remove canvas after animation completes
-                    setTimeout(() => {
-                        if (canvas.parentNode) {
-                            canvas.parentNode.removeChild(canvas);
-                        }
-                    }, 1000);
-                }
-            }
-            
-            drawConfetti();
-            
-            // Remove canvas after 5 seconds
-            setTimeout(() => {
-                if (canvas.parentNode) {
-                    canvas.parentNode.removeChild(canvas);
-                }
-            }, 5000);
-        }
-
         // Enhanced showResults function with confetti
         function showResults() {
             quizContent.style.display = 'none';
             quizResults.style.display = 'block';
             
-            const percentage = Math.round((score / quizQuestions.length) * 100);
+            const percentage = Math.round((score / shuffledQuestions.length) * 100);
             scorePercentage.textContent = `${percentage}%`;
             
             // Set results message based on score
@@ -4517,6 +6913,69 @@
             `;
         }
 
+        // Function to create confetti effect
+        function createConfetti() {
+            const confettiCanvas = document.createElement('canvas');
+            confettiCanvas.id = 'confetti-canvas';
+            document.body.appendChild(confettiCanvas);
+            
+            const ctx = confettiCanvas.getContext('2d');
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+            
+            const confettiPieces = [];
+            const colors = ['#1a5d1a', '#2e8b2e', '#ff6b35', '#3498db', '#e74c3c'];
+            
+            // Create confetti pieces
+            for (let i = 0; i < 150; i++) {
+                confettiPieces.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+                    size: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 3 + 2,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 10 - 5
+                });
+            }
+            
+            // Animate confetti
+            function animateConfetti() {
+                ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                
+                let activePieces = 0;
+                
+                confettiPieces.forEach(piece => {
+                    piece.y += piece.speed;
+                    piece.rotation += piece.rotationSpeed;
+                    
+                    if (piece.y < confettiCanvas.height) {
+                        activePieces++;
+                        
+                        ctx.save();
+                        ctx.translate(piece.x, piece.y);
+                        ctx.rotate(piece.rotation * Math.PI / 180);
+                        ctx.fillStyle = piece.color;
+                        ctx.fillRect(-piece.size / 2, -piece.size / 2, piece.size, piece.size);
+                        ctx.restore();
+                    }
+                });
+                
+                if (activePieces > 0) {
+                    requestAnimationFrame(animateConfetti);
+                } else {
+                    // Remove canvas after animation completes
+                    setTimeout(() => {
+                        if (confettiCanvas.parentNode) {
+                            confettiCanvas.parentNode.removeChild(confettiCanvas);
+                        }
+                    }, 1000);
+                }
+            }
+            
+            animateConfetti();
+        }
+
         // Save Results Button in Quiz
         saveResultsBtnInQuiz.addEventListener('click', () => {
             openSaveResultsModal();
@@ -4528,6 +6987,9 @@
             score = 0;
             userAnswers = [];
             scoreValue.textContent = '0';
+            
+            // Shuffle questions and options again for retry
+            shuffleQuiz();
             
             quizResults.style.display = 'none';
             quizContent.style.display = 'block';
